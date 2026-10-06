@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FABLE 預約登記</title>
+<meta name="description" content="Fable 限量供應中，先登記領號碼牌。CLAWD STORE 非官方 fan art。">
+<meta property="og:title" content="FABLE 預約登記｜CLAWD STORE">
+<meta property="og:description" content="這題我會，但我不能說。先登記，領一張候補號碼牌。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ar36planet.github.io/clawd-store/fable.html">
+<meta property="og:image" content="https://ar36planet.github.io/clawd-store/og-fable.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1b1b1b">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦀</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff; --ink:#1b1b1b; --sub:#8a8a8a; --soft:#c9c9c9;
+  --clawd:#d9765a; --new:#e8261f; --pick:#1e6fe8; --pick-fill:#aac2ec;
+  --buy:#ffd21f; --buy-ink:#1b1b1b;
+  box-sizing:border-box;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1c1b1a; --ink:#f1efe9; --sub:#9b9892; --soft:#4a4844;
+    --pick-fill:#2c4a7a; --pick:#6aa2ff;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1c1b1a; --ink:#f1efe9; --sub:#9b9892; --soft:#4a4844;
+  --pick-fill:#2c4a7a; --pick:#6aa2ff;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  font-size:17px;line-height:1.55;
+  padding-top:env(safe-area-inset-top,0px);
+}
+.hand{font-weight:700}
+button,input,label{font:inherit;color:inherit}
+:focus-visible{outline:3px dashed var(--pick);outline-offset:3px}
+[hidden]{display:none!important}
+
+.sk{position:relative}
+.sk::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  border:2.5px solid var(--line-c,var(--ink));border-radius:3px;filter:url(#wobble);
+}
+
+.top{max-width:1100px;margin:0 auto;padding:18px 20px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{white-space:nowrap;font-size:clamp(24px,6vw,40px);color:var(--clawd);line-height:1;margin:0;font-weight:900;letter-spacing:.04em;text-decoration:none}
+.lang{border:2px solid var(--soft);background:transparent;border-radius:999px;padding:2px 12px;font-size:15px;cursor:pointer;white-space:nowrap}
+.lang:hover{border-color:var(--sub)}
+
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px 80px}
+.hero{display:grid;gap:12px;align-items:center;padding:20px 0 24px}
+@media (min-width:820px){ .hero{grid-template-columns:1fr 1.1fr;gap:40px;padding:36px 0 40px} }
+.stage{position:relative;display:flex;flex-direction:column;align-items:center;gap:18px;min-height:260px}
+.figure{position:relative;width:min(70%,340px)}
+.figure img{display:block;width:100%;height:auto;filter:brightness(0);opacity:.9}
+:root[data-theme="dark"] .figure img{filter:brightness(0) invert(1)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .figure img{filter:brightness(0) invert(1)} }
+.figure .q{position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(64px,14vw,120px);font-weight:900;color:var(--buy);padding-bottom:12%;
+  text-shadow:0 0 0 transparent;animation:wob 2.4s ease-in-out infinite}
+@keyframes wob{50%{transform:rotate(-6deg) scale(1.06)}}
+.bubble{
+  position:relative;align-self:flex-end;margin-right:8%;max-width:min(80%,300px);
+  background:var(--paper);padding:10px 14px;font-size:16px;font-weight:500;line-height:1.45;
+}
+.bubble::after{
+  content:"";position:absolute;left:22px;bottom:-12px;width:16px;height:16px;background:var(--paper);
+  border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:rotate(45deg) skew(8deg,8deg);
+}
+
+.tag{display:inline-block;background:var(--new);color:#fff;font-size:17px;font-weight:900;padding:0 10px;line-height:30px;transform:rotate(-2deg);letter-spacing:.06em}
+.title{font-size:clamp(44px,11vw,64px);margin:6px 0 0;line-height:1;font-weight:900;letter-spacing:.04em}
+.sub{font-size:24px;margin:4px 0 16px;font-weight:700}
+.specs{margin:0 0 16px;padding:0;list-style:none;display:grid;gap:2px}
+.specs li{display:flex;gap:12px}
+.specs b{min-width:5.5em;color:var(--sub);font-weight:500}
+.stats{display:flex;gap:28px;flex-wrap:wrap}
+.stat .n{font-size:30px;font-weight:900;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat .l{color:var(--sub);font-size:14px}
+
+.mine{margin:6px 0 0;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;--line-c:var(--pick)}
+.mine p{margin:0}
+
+form{max-width:760px}
+.group{padding:22px 0 18px;border-top:2px dashed var(--soft)}
+.group h2{font-size:22px;margin:0 0 10px;font-weight:700}
+.group h2 small{color:var(--sub);font-weight:400;font-size:15px;margin-left:6px}
+.field input{width:100%;max-width:360px;font-size:20px;padding:8px 14px;border:0;background:transparent}
+.field{display:inline-block}
+.chips{display:flex;flex-wrap:wrap;gap:12px}
+.chip{position:relative;cursor:pointer}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-block;padding:6px 16px;font-size:18px;line-height:1.3;--line-c:var(--soft);background:var(--paper);transition:background .15s}
+.chip span::before{border-width:3px}
+.chip:hover span{--line-c:var(--sub)}
+.chip input:checked + span{background:var(--pick-fill);--line-c:var(--pick)}
+.chip input:focus-visible + span{outline:3px dashed var(--pick);outline-offset:3px}
+.check{display:flex;gap:10px;align-items:flex-start;margin:8px 0;cursor:pointer}
+.check input{width:20px;height:20px;margin:4px 0 0;accent-color:var(--pick);flex:none}
+.err{color:var(--new);font-size:15px;min-height:1.5em;margin:8px 0 0}
+
+.buy{
+  display:inline-flex;align-items:center;gap:10px;border:0;cursor:pointer;text-decoration:none;
+  background:var(--buy);color:var(--buy-ink);font-size:26px;font-weight:900;padding:12px 36px;letter-spacing:.04em;
+  transform:rotate(-.6deg);transition:transform .12s;
+}
+.buy:hover{transform:rotate(-.6deg) scale(1.03)}
+.buy:active{transform:rotate(-.6deg) scale(.97)}
+.buy.small{font-size:18px;padding:8px 20px}
+.ghost{background:transparent;color:var(--ink)}
+.privacy{color:var(--sub);font-size:14px;margin:14px 0 0}
+
+.foot{max-width:1100px;margin:0 auto;padding:0 20px 40px;color:var(--sub);font-size:13px}
+.foot a{color:inherit}
+
+.toast{
+  position:fixed;left:50%;bottom:calc(30px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);
+  background:var(--ink);color:var(--paper);padding:10px 18px;font-size:16px;opacity:0;pointer-events:none;
+  transition:.25s;z-index:30;max-width:90vw;text-align:center;border-radius:4px;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+.modal{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.45);display:none;align-items:flex-end;justify-content:center}
+.modal.open{display:flex}
+@media (min-width:700px){ .modal{align-items:center} }
+.sheet{background:var(--paper);width:100%;max-width:460px;max-height:92%;overflow:auto;padding:22px 20px calc(20px + env(safe-area-inset-bottom,0px))}
+.sheet h3{font-size:26px;margin:0;font-weight:900}
+.sheet p{color:var(--sub);margin:0 0 14px}
+.sheet img{width:100%;display:block;border:1px solid var(--soft);background:#fff}
+.sheet .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.sheet .row .buy{font-size:18px;padding:9px 18px}
+.hint{font-size:14px;color:var(--sub);margin-top:10px}
+
+@media (prefers-reduced-motion:reduce){ *{transition:none!important;animation:none!important} }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter>
+</svg>
+
+<header class="top">
+  <a class="logo hand" href="./" data-i18n-aria="back">CLAWD STORE</a>
+  <button type="button" class="lang hand" id="langBtn">EN</button>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="stage">
+      <div class="bubble sk hand" data-i18n="quote">這題我會，但我不能說。</div>
+      <div class="figure"><img src="clawd.webp" width="560" height="462" alt="" id="clawdImg"><div class="q" aria-hidden="true">?</div></div>
+    </div>
+    <div>
+      <span class="tag" data-i18n="tag">限量</span>
+      <h1 class="title hand">FABLE</h1>
+      <p class="sub" data-i18n="sub">預約登記</p>
+      <ul class="specs">
+        <li><b data-i18n="kPrice">價格</b><span data-i18n="vPrice">未定</span></li>
+        <li><b data-i18n="kShip">出貨日</b><span data-i18n="vShip">未定</span></li>
+        <li><b data-i18n="kSpec">規格</b><span data-i18n="vSpec">不能說</span></li>
+      </ul>
+      <div class="stats">
+        <div class="stat"><div class="n" id="queue">48,000</div><div class="l" data-i18n="queue">目前候補人數</div></div>
+        <div class="stat"><div class="n" id="serving">No. 00,042</div><div class="l" data-i18n="serving">目前叫號</div></div>
+      </div>
+      <div class="mine sk" id="mine" hidden>
+        <p id="mineText"></p>
+        <button type="button" class="buy small hand" id="viewBtn" data-i18n="view">看號碼牌</button>
+      </div>
+    </div>
+  </section>
+
+  <form id="form" novalidate>
+    <div class="group">
+      <h2><span data-i18n="name">暱稱</span><small data-i18n="nameHint">會印在號碼牌上</small></h2>
+      <label class="field sk"><input id="nick" maxlength="20" autocomplete="nickname" required></label>
+    </div>
+    <div class="group" role="radiogroup" aria-labelledby="hUse">
+      <h2 id="hUse" data-i18n="use">你打算拿 Fable 做什麼？</h2>
+      <div class="chips" id="useChips"></div>
+    </div>
+    <div class="group" role="radiogroup" aria-labelledby="hWait">
+      <h2 id="hWait" data-i18n="wait">你可以等多久？</h2>
+      <div class="chips" id="waitChips"></div>
+    </div>
+    <div class="group">
+      <h2 data-i18n="terms">同意事項</h2>
+      <label class="check"><input type="checkbox" id="t1" required><span data-i18n="t1">我理解 Fable 可能永遠不會出貨。</span></label>
+      <label class="check"><input type="checkbox" id="t2" required><span data-i18n="t2">我不會問牠「你是不是 Opus 換殼」。</span></label>
+      <label class="check"><input type="checkbox" id="t3"><span data-i18n="t3">（選填）有貨時請不要通知我，我比較喜歡排隊的感覺。</span></label>
+      <p class="err" id="err" role="alert"></p>
+      <button class="buy hand sk" id="submitBtn" type="submit" data-i18n="submit">登記，領號碼牌</button>
+      <p class="privacy" data-i18n="privacy">你填的東西只存在這台裝置的瀏覽器裡，不會送到任何地方。</p>
+    </div>
+  </form>
+</main>
+
+<footer class="foot"><span data-i18n="foot">非官方 fan art 惡搞作品，與 Anthropic 無關；沒有任何真實預約。</span> · <a href="./" data-i18n="backLink">回商店</a></footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="sheet">
+    <h3 class="hand" id="mTitle" data-i18n="mTitle">登記完成！</h3>
+    <p id="mSub"></p>
+    <img id="ticketImg" alt="">
+    <div class="row">
+      <button class="buy hand sk" id="dlBtn" data-i18n="dl">下載號碼牌</button>
+      <button class="buy hand sk ghost" id="shareBtn" data-i18n="share" hidden>分享</button>
+      <button class="buy hand sk ghost" id="closeBtn" data-i18n="close">關閉</button>
+    </div>
+    <div class="hint" data-i18n="hold">也可以長按號碼牌圖片儲存。</div>
+  </div>
+</div>
+
+<script>
+const USES = [
+  { id:'code',  zh:'寫 code',        en:'Write code' },
+  { id:'novel', zh:'寫小說',          en:'Write a novel' },
+  { id:'ask',   zh:'問牠到底是什麼',   en:'Ask what it actually is' },
+  { id:'queue', zh:'我只是喜歡排隊',   en:'I just like queueing' },
+];
+const WAITS = [
+  { id:'week',    zh:'一週',       en:'A week' },
+  { id:'month',   zh:'一個月',     en:'A month' },
+  { id:'forever', zh:'等到天荒地老', en:'Until the universe ends' },
+];
+const UI = {
+  zh:{ quote:'這題我會，但我不能說。', tag:'限量', sub:'預約登記', kPrice:'價格', vPrice:'未定', kShip:'出貨日', vShip:'未定', kSpec:'規格', vSpec:'不能說',
+       queue:'目前候補人數', serving:'目前叫號', view:'看號碼牌', name:'暱稱', nameHint:'會印在號碼牌上', use:'你打算拿 Fable 做什麼？', wait:'你可以等多久？',
+       terms:'同意事項', t1:'我理解 Fable 可能永遠不會出貨。', t2:'我不會問牠「你是不是 Opus 換殼」。', t3:'（選填）有貨時請不要通知我，我比較喜歡排隊的感覺。',
+       submit:'登記，領號碼牌', resubmit:'重新登記（會排到更後面）', privacy:'你填的東西只存在這台裝置的瀏覽器裡，不會送到任何地方。',
+       foot:'非官方 fan art 惡搞作品，與 Anthropic 無關；沒有任何真實預約。', backLink:'回商店', back:'回 CLAWD STORE 商店',
+       mTitle:'登記完成！', mTitleOld:'你的號碼牌', dl:'下載號碼牌', share:'分享', close:'關閉', hold:'也可以長按號碼牌圖片儲存。', ticketAlt:'Fable 候補號碼牌',
+       mine:n=>`你已經登記過了，號碼 No. ${n}。`, mSub:(n,y)=>`你是第 ${n} 號。照目前叫號速度，大約 ${y} 年後輪到你。`,
+       errNick:'請填暱稱，號碼牌上要印。', errUse:'選一個用途，雖然我們也不會看。', errWait:'選一個你可以等多久。', errTerms:'前兩項同意事項要打勾。',
+       requeued:'重新登記完成，號碼往後排了。', saved:'號碼牌已下載',
+       tk:{ head:'FABLE 候補號碼牌', no:'No.', nick:'暱稱', at:'登記時間', use:'用途', wait:'可等待', serving:'目前叫號', eta:'預估等待',
+            etaV:y=>`約 ${y} 年（每週叫一號）`, stamp:'候補中', notify:'有貨時：請勿通知',
+            fine:['請妥善保管本號碼牌，過號不候。','叫號時請本人到現場，現場在哪也不能說。','本號碼牌為 fan art 惡搞作品，非真實預約。'] } },
+  en:{ quote:"I know the answer, but I can't tell you.", tag:'LIMITED', sub:'Reservations', kPrice:'Price', vPrice:'TBD', kShip:'Ships', vShip:'TBD', kSpec:'Specs', vSpec:"Can't say",
+       queue:'On the waitlist', serving:'Now serving', view:'View ticket', name:'Nickname', nameHint:'printed on your ticket', use:'What will you use Fable for?', wait:'How long can you wait?',
+       terms:'Terms', t1:'I understand Fable may never ship.', t2:'I will not ask it "are you just Opus in a new shell?"', t3:"(Optional) Please don't notify me when it's in stock. I like the queue.",
+       submit:'Reserve & get a ticket', resubmit:'Re-register (you go further back)', privacy:'What you enter stays in this browser on this device. Nothing is sent anywhere.',
+       foot:'Unofficial fan-art parody, not affiliated with Anthropic. No real reservations.', backLink:'Back to store', back:'Back to CLAWD STORE',
+       mTitle:"You're on the list!", mTitleOld:'Your ticket', dl:'Save ticket', share:'Share', close:'Close', hold:'You can also long-press the ticket to save it.', ticketAlt:'Fable waitlist ticket',
+       mine:n=>`You're already registered: No. ${n}.`, mSub:(n,y)=>`You're No. ${n}. At the current pace, your turn comes in about ${y} years.`,
+       errNick:'Enter a nickname. It goes on the ticket.', errUse:"Pick a use. We won't read it, but still.", errWait:'Pick how long you can wait.', errTerms:'Please tick the first two terms.',
+       requeued:"Re-registered. You've moved further back.", saved:'Ticket saved',
+       tk:{ head:'FABLE WAITLIST TICKET', no:'No.', nick:'Name', at:'Registered', use:'Use', wait:'Can wait', serving:'Now serving', eta:'Est. wait',
+            etaV:y=>`~${y} years (one number per week)`, stamp:'WAITING', notify:'When in stock: do not notify',
+            fine:['Keep this ticket safe. Missed numbers are not recalled.','Come in person when called. Where? We can\'t say.','This ticket is a fan-art parody, not a real reservation.'] } },
+};
+const SERVING = 42, KEY = 'clawd-fable-ticket';
+const $ = id => document.getElementById(id);
+let lang = 'zh';
+try{ lang = localStorage.getItem('clawd-lang') || ''; }catch(e){}
+if(lang!=='zh' && lang!=='en') lang = /^zh/i.test(navigator.language||'') ? 'zh' : 'en';
+const t = k => UI[lang][k];
+const fmt = n => n.toLocaleString('en-US');
+const pad = n => { const s=String(n).padStart(5,'0'); return s.slice(0,-3)+','+s.slice(-3); };
+const years = no => fmt(Math.ceil((no - SERVING) / 52));
+const load = () => { try{ return JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){ return null; } };
+const save = tk => { try{ localStorage.setItem(KEY, JSON.stringify(tk)); }catch(e){} };
+let ticket = load(), blob = null, freshTicket = false;
+
+/* 候補人數：每天固定長一點，看起來像真的有人在排 */
+const day = Math.floor(Date.now()/864e5);
+const baseQueue = 48000 + (day % 400) * 3 + (day * 7919 % 97);
+
+function chips(el, list, name){
+  const cur = el.querySelector('input:checked')?.value;
+  el.innerHTML = list.map(o=>`<label class="chip"><input type="radio" name="${name}" value="${o.id}" ${cur===o.id?'checked':''}><span class="hand sk">${o[lang]}</span></label>`).join('');
+}
+function applyLang(){
+  document.documentElement.lang = lang==='en' ? 'en' : 'zh-Hant';
+  document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent = t(el.dataset.i18n));
+  document.querySelector('.logo').setAttribute('aria-label', t('back'));
+  $('ticketImg').alt = t('ticketAlt');
+  $('langBtn').textContent = lang==='en' ? '中文' : 'EN';
+  $('langBtn').setAttribute('aria-label', lang==='en' ? '切換成中文' : 'Switch to English');
+  chips($('useChips'), USES, 'use'); chips($('waitChips'), WAITS, 'wait');
+  refresh();
+  if($('modal').classList.contains('open') && ticket) showTicket(freshTicket);
+}
+function refresh(){
+  $('queue').textContent = fmt(Math.max(baseQueue, ticket ? ticket.no : 0));
+  $('mine').hidden = !ticket;
+  if(ticket){ $('mineText').textContent = t('mine')(pad(ticket.no)); $('mSub').textContent = t('mSub')(pad(ticket.no), years(ticket.no)); }
+  $('mTitle').textContent = freshTicket ? t('mTitle') : t('mTitleOld');
+  $('submitBtn').textContent = ticket ? t('resubmit') : t('submit');
+}
+
+let tt;
+function toast(msg){ const el=$('toast'); el.textContent=msg; el.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove('show'),2600); }
+
+$('form').addEventListener('submit', async e=>{
+  e.preventDefault();
+  const nick = $('nick').value.trim();
+  const use = document.querySelector('input[name=use]:checked')?.value;
+  const wait = document.querySelector('input[name=wait]:checked')?.value;
+  const fail = (msg, el) => { $('err').textContent = msg; el?.focus(); };
+  if(!nick) return fail(t('errNick'), $('nick'));
+  if(!use) return fail(t('errUse'), document.querySelector('input[name=use]'));
+  if(!wait) return fail(t('errWait'), document.querySelector('input[name=wait]'));
+  if(!$('t1').checked || !$('t2').checked) return fail(t('errTerms'), $('t1').checked ? $('t2') : $('t1'));
+  $('err').textContent = '';
+  const again = !!ticket;
+  const no = again ? ticket.no + 100 + Math.floor(Math.random()*900) : baseQueue + 1 + Math.floor(Math.random()*30);
+  ticket = { no, nick, use, wait, quiet: $('t3').checked, at: Date.now() };
+  save(ticket); refresh();
+  if(again) toast(t('requeued'));
+  await showTicket(true);
+});
+$('viewBtn').onclick = () => showTicket(false);
+
+async function showTicket(fresh){
+  const c = await drawTicket(ticket);
+  $('ticketImg').src = c.toDataURL('image/png');
+  blob = await new Promise(r=>c.toBlob(r,'image/png'));
+  freshTicket = fresh; refresh();
+  const file = new File([blob], fname(), { type:'image/png' });
+  $('shareBtn').hidden = !(navigator.canShare && navigator.canShare({ files:[file] }));
+  if(!$('modal').classList.contains('open')){ $('modal').classList.add('open'); $('dlBtn').focus(); }
+}
+const fname = () => `fable-ticket-${ticket.no}.png`;
+
+$('dlBtn').onclick = ()=>{
+  if(!blob) return;
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fname();
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  toast(t('saved'));
+};
+$('shareBtn').onclick = async ()=>{
+  try{ await navigator.share({ files:[new File([blob], fname(), { type:'image/png' })], title:'FABLE', url:location.href }); }catch(e){}
+};
+$('closeBtn').onclick = ()=>$('modal').classList.remove('open');
+$('modal').addEventListener('click', e=>{ if(e.target.id==='modal') $('closeBtn').click(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && $('modal').classList.contains('open')) $('closeBtn').click(); });
+$('langBtn').onclick = ()=>{ lang = lang==='en' ? 'zh' : 'en'; try{ localStorage.setItem('clawd-lang', lang); }catch(e){} applyLang(); };
+
+/* ---------- ticket ---------- */
+function wobblyLine(x, x1, y1, x2, y2, w=3){
+  x.lineWidth = w; x.lineCap='round'; x.beginPath();
+  const steps = Math.max(2, Math.floor(Math.hypot(x2-x1,y2-y1)/40));
+  x.moveTo(x1, y1);
+  for(let i=1;i<=steps;i++){ const k=i/steps; x.lineTo(x1+(x2-x1)*k + (Math.random()-.5)*2.2, y1+(y2-y1)*k + (Math.random()-.5)*2.2); }
+  x.stroke();
+}
+function wobblyRect(x, a, b, w, h, lw){ wobblyLine(x,a,b,a+w,b,lw); wobblyLine(x,a+w,b,a+w,b+h,lw); wobblyLine(x,a+w,b+h,a,b+h,lw); wobblyLine(x,a,b+h,a,b,lw); }
+function silhouette(im, w, h){
+  const c=document.createElement('canvas'); c.width=Math.round(w); c.height=Math.round(h);
+  const x=c.getContext('2d'); x.drawImage(im,0,0,c.width,c.height);
+  x.globalCompositeOperation='source-in'; x.fillStyle='#1b1b1b'; x.fillRect(0,0,c.width,c.height);
+  return c;
+}
+
+async function drawTicket(tk){
+  try{ await document.fonts.ready }catch(e){}
+  const im = $('clawdImg'); if(!im.complete) await new Promise(r=>im.onload=r);
+  const T = t('tk'), f = '"Noto Sans TC","PingFang TC",sans-serif';
+  const W=800, H=tk.quiet?1416:1370, c=document.createElement('canvas'); c.width=W; c.height=H; const x=c.getContext('2d');
+  x.fillStyle='#fff'; x.fillRect(0,0,W,H);
+  x.strokeStyle='#1b1b1b'; wobblyRect(x,26,26,W-52,H-52,4);
+
+  x.textAlign='center';
+  x.fillStyle='#d9765a'; x.font=`900 40px ${f}`; x.fillText('CLAWD STORE',W/2,100);
+  x.fillStyle='#1b1b1b'; x.font=`700 34px ${f}`; x.fillText(T.head,W/2,152);
+  x.strokeStyle='#8a8a8a'; x.setLineDash([10,12]); wobblyLine(x,60,190,W-60,190,2.5); x.setLineDash([]);
+
+  x.fillStyle='#8a8a8a'; x.font=`500 34px ${f}`; x.fillText(T.no,W/2,262);
+  x.fillStyle='#1b1b1b'; x.font=`900 150px ${f}`; x.fillText(pad(tk.no),W/2,410);
+  x.fillStyle='rgba(255,210,31,.75)'; x.save(); x.translate(W/2,432); x.rotate(-.015); x.fillRect(-250,-8,500,22); x.restore();
+
+  const sw=220, sh=im.naturalHeight*sw/im.naturalWidth;
+  x.drawImage(silhouette(im,sw,sh), W-80-sw, 480, sw, sh);
+  x.fillStyle='#ffd21f'; x.font=`900 110px ${f}`; x.fillText('?', W-80-sw/2, 480+sh*.62);
+
+  const d=new Date(tk.at), p=n=>String(n).padStart(2,'0');
+  const useL = USES.find(o=>o.id===tk.use)?.[lang] || '', waitL = WAITS.find(o=>o.id===tk.wait)?.[lang] || '';
+  const rows = [[T.nick,tk.nick],[T.at,`${d.getFullYear()}/${p(d.getMonth()+1)}/${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`],
+                [T.use,useL],[T.wait,waitL],[T.serving,pad(SERVING)]];
+  x.textAlign='left'; let y=520;
+  for(const [k,v] of rows){
+    x.fillStyle='#8a8a8a'; x.font=`28px ${f}`; x.fillText(k,70,y);
+    x.fillStyle='#1b1b1b'; x.font=`500 30px ${f}`;
+    let s=v; while(x.measureText(s).width>W-80-sw-30-70 && s.length>2) s=s.slice(0,-2)+'…';
+    x.fillText(s,70,y+38); y+=86;
+  }
+  y+=10; wobblyLine(x,60,y,W-60,y,3); y+=56;
+  x.fillStyle='#1b1b1b'; x.font=`700 30px ${f}`; x.fillText(T.eta,70,y);
+  y+=48; x.font=`900 38px ${f}`; x.fillText(T.etaV(years(tk.no)),70,y);
+  if(tk.quiet){ y+=46; x.fillStyle='#8a8a8a'; x.font=`26px ${f}`; x.fillText(T.notify,70,y); }
+
+  y+=44; let bx=70, r=tk.no; x.fillStyle='#1b1b1b';
+  while(bx<W-70){ r=(r*9301+49297)%233280; const w=2+(r%5); if((r>>3)%2) x.fillRect(bx,y,w,70); bx+=w+2; }
+  y+=118; x.fillStyle='#8a8a8a'; x.font=`23px ${f}`;
+  T.fine.forEach((l,i)=>x.fillText(l,70,y+i*36));
+
+  x.save(); x.translate(W-80-sw/2-80, 740); x.rotate(-.14);
+  x.strokeStyle='#e8261f'; wobblyRect(x,-10,-58,lang==='en'?210:170,76,5);
+  x.fillStyle='#e8261f'; x.font=`700 ${lang==='en'?34:42}px ${f}`; x.textAlign='center'; x.fillText(T.stamp,(lang==='en'?210:170)/2-10,-4); x.restore();
+  return c;
+}
+
+applyLang();
+</script>
+</body>
+</html>
