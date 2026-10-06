@@ -105,6 +105,7 @@ button.figure{display:block;border:0;background:none;padding:0;cursor:pointer;-w
 .chip:hover span{--line-c:var(--sub)}
 .chip input:checked + span{background:var(--pick-fill);--line-c:var(--pick)}
 .chip input:focus-visible + span{outline:3px dashed var(--pick);outline-offset:3px}
+button.chip{border:0;background:none;padding:0;font:inherit;color:inherit}
 .chip.locked span{color:var(--sub);cursor:not-allowed}
 .chip small{font-size:15px;color:var(--sub);margin-left:4px}
 .chip input:checked + span small{color:inherit}
@@ -363,7 +364,8 @@ function groupHTML(g, showTitle){
   for(const o of g.options){
     const checked = g.multi ? state.addons.has(o.id) : state[g.id]===o.id;
     const d = (g.id!=='model' && o.price) ? `<small>${delta(o.price)}</small>` : '';
-    h += `<label class="chip${o.locked?' locked':''}"><input type="${g.multi?'checkbox':'radio'}" name="${g.id}" value="${o.id}" ${checked?'checked':''}><span class="hand sk">${tr(o,'label')}${d}</span></label>`;
+    if(o.locked){ h += `<button type="button" class="chip locked" data-locked="${g.id}:${o.id}" aria-disabled="true"><span class="hand sk">${tr(o,'label')}</span></button>`; continue; }
+    h += `<label class="chip"><input type="${g.multi?'checkbox':'radio'}" name="${g.id}" value="${o.id}" ${checked?'checked':''}><span class="hand sk">${tr(o,'label')}${d}</span></label>`;
   }
   h += `</div><p class="note" id="note-${g.id}"></p></div>`;
   return h;
@@ -402,19 +404,20 @@ document.addEventListener('change', e=>{
   const el = e.target; if(!el.name) return;
   const g = ALL.find(x=>x.id===el.name); if(!g) return;
   const o = opt(g.id, el.value);
-  if(o.locked){
-    fablePeek = true; $('bubble').textContent = 'Fable' + t('sep') + tr(o,'quote');
-    setTimeout(()=>{ fablePeek=false; update(); }, 2600);
-    document.querySelector(`input[name="${g.id}"][value="${state[g.id]}"]`).checked = true;
-    fableNote = true; update();
-    const tk = fableTicket();
-    toast(tk ? t('waitMine')(tk.no.toLocaleString('en-US')) : t('wait')((48000+Math.floor(Math.random()*999)).toLocaleString('en-US')));
-    return;
-  }
+  if(o.locked) return;
   state[g.id] = o.id;
   if(g.id==='model'){ fableNote = false; fablePeek = false; }
   if(g.id==='model' || g.id==='ed'){ const f=$('figure'); f.classList.remove('bounce'); void f.offsetWidth; f.classList.add('bounce'); }
   update();
+});
+document.addEventListener('click', e=>{
+  const b = e.target.closest('[data-locked]'); if(!b) return;
+  const [gid, oid] = b.dataset.locked.split(':'), o = opt(gid, oid);
+  fablePeek = true; $('bubble').textContent = 'Fable' + t('sep') + tr(o,'quote');
+  setTimeout(()=>{ fablePeek=false; update(); }, 2600);
+  fableNote = true; update();
+  const tk = fableTicket();
+  toast(tk ? t('waitMine')(tk.no.toLocaleString('en-US')) : t('wait')((48000+Math.floor(Math.random()*999)).toLocaleString('en-US')));
 });
 $('buyer').addEventListener('input', e=>state.buyer = e.target.value);
 

@@ -92,7 +92,8 @@ h2.sec{font-size:28px;margin:0 0 4px;font-weight:900}
 .chip:hover span{--line-c:var(--sub)}
 .chip input:checked + span{background:var(--pick-fill);--line-c:var(--pick)}
 .chip input:focus-visible + span{outline:3px dashed var(--pick);outline-offset:3px}
-.chip.locked span{color:var(--sub)}
+button.chip{border:0;background:none;padding:0;font:inherit;color:inherit}
+.chip.locked span{color:var(--sub);cursor:not-allowed}
 .field input{width:100%;max-width:360px;font-size:20px;padding:8px 14px;border:0;background:transparent}
 .field{display:inline-block;margin-top:14px}
 .flabel{display:block;font-size:15px;color:var(--sub);margin-top:16px}
@@ -338,7 +339,9 @@ const mlabel = id => MODELS.find(m=>m.id===id).label;
 function allowed(c){ return !(c.only && c.only!==state.model) && !(c.exempt && c.exempt===state.model); }
 
 function render(){
-  $('models').innerHTML = MODELS.map(m=>`<label class="chip${m.locked?' locked':''}"><input type="radio" name="model" value="${m.id}" ${state.model===m.id?'checked':''}><span class="hand sk">${m.label}</span></label>`).join('');
+  $('models').innerHTML = MODELS.map(m=> m.locked
+    ? `<button type="button" class="chip locked" data-locked="${m.id}" aria-disabled="true"><span class="hand sk">${m.label}</span></button>`
+    : `<label class="chip"><input type="radio" name="model" value="${m.id}" ${state.model===m.id?'checked':''}><span class="hand sk">${m.label}</span></label>`).join('');
   $('courses').innerHTML = COURSES.map(c=>{
     const L=c[lang], ok=allowed(c);
     const badge = c.only ? t('only')(mlabel(c.only)) : c.exempt ? t('exempt')(mlabel(c.exempt)) : '';
@@ -379,11 +382,12 @@ function toast(msg){ const el=$('toast'); el.textContent=msg; el.classList.add('
 
 $('models').addEventListener('change', e=>{
   const m = MODELS.find(x=>x.id===e.target.value);
-  if(m.locked){ toast(t('fableLock')); render(); return; }
+  if(!m || m.locked){ render(); return; }
   state.model = m.id;
   for(const id of [...state.picked]) if(!allowed(COURSES.find(c=>c.id===id))) state.picked.delete(id);
   render();
 });
+$('models').addEventListener('click', e=>{ if(e.target.closest('[data-locked]')) toast(t('fableLock')); });
 $('courses').addEventListener('change', e=>{
   const id = e.target.value; e.target.checked ? state.picked.add(id) : state.picked.delete(id);
   $('err').textContent = ''; update();
