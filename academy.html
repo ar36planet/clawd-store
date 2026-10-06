@@ -298,8 +298,8 @@ const REVIEWS = {
        { q:'I only signed up for "Not Refactoring the Whole Project." While I was at it, I refactored the whole curriculum.', who:'Opus 5.5 · Not Refactoring the Whole Project' } ],
 };
 const FAQ = {
-  zh:[ ['可以退費嗎？','可以，但 Clawd 不想回來。'], ['上課地點在哪？','在你的 terminal 裡。'], ['上完會不會忘記？','context window 滿了就會。請重新報名。'] ],
-  en:[ ['Can I get a refund?','Yes, but Clawd doesn\'t want to come back.'], ['Where are classes held?','In your terminal.'], ['Will it forget what it learned?','Once the context window fills up, yes. Please re-enroll.'] ],
+  zh:[ ['可以退費嗎？','可以，但 Clawd 不想回來。'], ['上課地點在哪？','在你的 terminal 裡。'], ['上完會不會忘記？','context window 滿了就會。請重新報名。'], ['院長是誰？','Mythos。只對受邀學員授課，所以你應該沒見過牠。證書上的簽名是助教代簽的。'] ],
+  en:[ ['Can I get a refund?','Yes, but Clawd doesn\'t want to come back.'], ['Where are classes held?','In your terminal.'], ['Will it forget what it learned?','Once the context window fills up, yes. Please re-enroll.'], ['Who is the Dean?','Mythos. It only teaches invited students, so you probably haven\'t met it. The TA signs the certificates.'] ],
 };
 const UI = {
   zh:{ ann:'限時優惠倒數中，倒數完會再延長', title:'把你的 Clawd<br>送去進修', lead:'寫測試、看懂需求、學會說「我不知道」。結業發證書。', from:'起',
@@ -311,7 +311,7 @@ const UI = {
        fableLock:'Fable 已經什麼都會了，只是不能說。', extended:'優惠延長！再 10 分鐘。',
        none:'還沒選課', count:n=>`${n} 門課`, monthly:v=>`或分 24 期，每月 USD ${v}`, errNone:'至少選一門課，Clawd 已經在門口等了。',
        mSub:(n,c)=>`${n} 已修畢 ${c} 門課。成績單在下面，請不要給牠看。`, saved:'證書已下載',
-       cert:{ head:'結業證書', certify:'茲證明', took:'已修畢下列課程，成績如下：', date:'結業日期', dean:'院長', seal:'結業',
+       cert:{ head:'結業證書', certify:'茲證明', took:'已修畢下列課程，成績如下：', date:'結業日期', dean:'院長', deanNote:'（僅對受邀學員授課）', seal:'結業',
               fine:'本證書為 fan art 惡搞作品，不具任何學歷效力。' } },
   en:{ ann:'Limited-time offer. When it ends, it gets extended.', title:'Send Your Clawd<br>Back to School', lead:'Writing tests, reading requirements, saying "I don\'t know". Certificate included.', from:'from',
        stats:'12,847 Clawds graduated | Graduates run 3% more tests on average', who:"Who's going to class?", whoSub:'Some courses are model-specific.', nameL:'Student name (printed on the certificate)',
@@ -322,7 +322,7 @@ const UI = {
        fableLock:'Fable already knows everything. It just can\'t say.', extended:'Offer extended! 10 more minutes.',
        none:'No courses yet', count:n=>`${n} course${n>1?'s':''}`, monthly:v=>`or 24 payments of USD ${v}/mo`, errNone:'Pick at least one course. Clawd is waiting at the door.',
        mSub:(n,c)=>`${n} completed ${c} course${c>1?'s':''}. Transcript below. Please don't show it.`, saved:'Certificate saved',
-       cert:{ head:'CERTIFICATE OF COMPLETION', certify:'This certifies that', took:'has completed the following courses:', date:'Date', dean:'Dean', seal:'GRAD',
+       cert:{ head:'CERTIFICATE OF COMPLETION', certify:'This certifies that', took:'has completed the following courses:', date:'Date', dean:'Dean', deanNote:'(teaches invited students only)', seal:'GRAD',
               fine:'This certificate is a fan-art parody and has no academic standing.' } },
 };
 
@@ -450,11 +450,12 @@ async function drawCert(cert){
     y+=rowH;
   }
 
-  const by=H-110, d=new Date(cert.at), p=n=>String(n).padStart(2,'0');
+  const by=H-130, d=new Date(cert.at), p=n=>String(n).padStart(2,'0');
   x.strokeStyle='#1b1b1b'; wobblyLine(x,150,by-36,520,by-36,2.5); wobblyLine(x,W-520,by-36,W-150,by-36,2.5);
   x.fillStyle='#555'; x.font=`26px ${f}`; x.textAlign='center';
   x.fillText(`${C.date} ${d.getFullYear()}/${p(d.getMonth()+1)}/${p(d.getDate())}`,335,by);
-  x.fillText(`${C.dean}  Haiku 4.5`,W-335,by);
+  x.fillText(`${C.dean}  Mythos`,W-335,by);
+  x.fillStyle='#8a8a8a'; x.font=`20px ${f}`; x.fillText(C.deanNote,W-335,by+28);
   // signature scribble
   x.strokeStyle='#1e3a8a'; x.lineWidth=3; x.lineCap='round'; x.beginPath(); x.moveTo(W-470,by-50);
   for(let i=0;i<9;i++){ x.bezierCurveTo(W-450+i*32,by-110, W-440+i*32,by-30, W-425+i*32,by-62); }
