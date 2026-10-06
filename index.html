@@ -56,6 +56,13 @@ button,input,label{font:inherit;color:inherit}
   border:2.5px solid var(--line-c,var(--ink));border-radius:3px;filter:url(#wobble);
 }
 
+/* announcement bar */
+.announce{display:block;background:#1b1b1b;color:#fff;text-align:center;text-decoration:none;font-size:14px;font-weight:700;letter-spacing:.03em;padding:8px 16px;line-height:1.4}
+.announce:hover span{text-decoration:underline;text-underline-offset:3px}
+.announce b{background:var(--new);color:#fff;font-weight:900;padding:1px 7px;margin-right:8px;font-size:12px;vertical-align:1px}
+:root[data-theme="dark"] .announce{background:#f1efe9;color:#1b1b1b}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .announce{background:#f1efe9;color:#1b1b1b} }
+
 /* header */
 .top{max-width:1100px;margin:0 auto;padding:18px 20px 0;display:flex;justify-content:space-between;align-items:center}
 .logo{white-space:nowrap;font-size:clamp(28px,8vw,60px);color:var(--clawd);line-height:1;margin:0;font-weight:900;letter-spacing:.04em}
@@ -194,6 +201,7 @@ button.figure{display:block;border:0;background:none;padding:0;cursor:pointer;-w
   <filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter>
 </svg>
 
+<a class="announce" id="announce" href="fable.html"><b data-i18n="annTag">NEW</b><span id="annText">Fable 限量預約登記中，先領號碼牌 →</span></a>
 <header class="top">
   <h1 class="logo hand">CLAWD STORE</h1>
   <div class="tools"><button type="button" class="lang hand" id="langBtn">EN</button><span class="cart hand" id="cart" aria-label="購物車">🛒<b id="cartN">0</b></span></div>
@@ -305,7 +313,7 @@ const UI = {
   zh:{ more:'越往下滑，越有可能手滑。', acc:'加購配件', buyer:'收件人', buyerPh:'名字或暱稱，會印在收據上',
        foot:'非官方 fan art 惡搞作品，與 Anthropic 無關；頁面上沒有任何真實交易。', cart:'購物車',
        dl:'下載收據', again:'再買一隻', hold:'也可以長按收據圖片儲存。', invAlt:'Clawd 購買收據',
-       dec:'減少', inc:'增加', patLabel:'摸摸頭',
+       dec:'減少', inc:'增加', annTag:'限量', ann:'Fable 限量預約登記中，先領號碼牌 →', annMine:n=>`你的 Fable 候補號碼 No. ${n}，看號碼牌 →`, patLabel:'摸摸頭',
        pats:['嘿嘿。','（開心地晃了晃腳）','跑速 +3%。','再摸一下，build 就會過。','這邊，這邊也要摸。'], patMax:'好啦好啦，已經是最快了。', qty:n=>`${n} 數量`, sep:'：',
        mo:v=>`或分 24 期，每月 USD ${v}`, moInv:v=>`分 24 期，每月 USD ${v}`,
        wait:n=>`Fable 限量供應中，你是候補第 ${n} 位`, waitMine:n=>`你已經在候補名單上了，號碼 No. ${n}`,
@@ -317,7 +325,7 @@ const UI = {
   en:{ more:'The further you scroll, the more likely you slip and buy.', acc:'Accessories', buyer:'Recipient', buyerPh:'Name or nickname, printed on the receipt',
        foot:'Unofficial fan-art parody, not affiliated with Anthropic. No real transactions happen here.', cart:'Cart',
        dl:'Save receipt', again:'Buy another', hold:'You can also long-press the receipt to save it.', invAlt:'Clawd purchase receipt',
-       dec:'Decrease', inc:'Increase', patLabel:'Pat Clawd',
+       dec:'Decrease', inc:'Increase', annTag:'LIMITED', ann:'Fable reservations are open. Grab a waitlist ticket →', annMine:n=>`Your Fable waitlist number: No. ${n}. View ticket →`, patLabel:'Pat Clawd',
        pats:['Hehe.','(happily wiggles its legs)','Speed +3%.','One more pat and the build will pass.','Here, this side too.'], patMax:'OK OK, this is already max speed.', qty:n=>`${n} quantity`, sep:': ',
        mo:v=>`or 24 payments of USD ${v}/mo`, moInv:v=>`24 payments of USD ${v}/mo`,
        wait:n=>`Fable is in limited supply. You're #${n} on the waitlist`, waitMine:n=>`You're already on the waitlist: No. ${n}`,
@@ -370,6 +378,7 @@ function applyLang(){
   document.documentElement.lang = lang==='en' ? 'en' : 'zh-Hant';
   document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent = t(el.dataset.i18n));
   $('buyer').placeholder = t('buyerPh'); $('cart').setAttribute('aria-label', t('cart')); $('invImg').alt = t('invAlt'); $('figure').setAttribute('aria-label', t('patLabel'));
+  const tk = fableTicket(); $('annText').textContent = tk ? t('annMine')(tk.no.toLocaleString('en-US')) : t('ann'); $('announce').href = tk ? 'fable.html#ticket' : 'fable.html';
   $('langBtn').textContent = lang==='en' ? '中文' : 'EN';
   $('langBtn').setAttribute('aria-label', lang==='en' ? '切換成中文' : 'Switch to English');
   render(); update();
