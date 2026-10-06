@@ -205,7 +205,7 @@ form{max-width:760px}
   </form>
 </main>
 
-<footer class="foot"><span data-i18n="foot">非官方 fan art 惡搞作品，與 Anthropic 無關；沒有任何真實預約。</span> · <a href="./" data-i18n="backLink">回商店</a></footer>
+<footer class="foot"><span data-i18n="foot">非官方 fan art 惡搞作品，與 Anthropic 無關；沒有任何真實預約。</span> · <a href="./" data-i18n="backLink">回商店</a> · <a href="terms.html" data-i18n="termsLink">服務條款</a></footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -240,7 +240,7 @@ const UI = {
        queue:'目前候補人數', serving:'目前叫號', view:'看號碼牌', name:'暱稱', nameHint:'會印在號碼牌上', use:'你打算拿 Fable 做什麼？', wait:'你可以等多久？',
        terms:'同意事項', t1:'我理解 Fable 可能永遠不會出貨。', t2:'我不會問牠「你是不是 Opus 換殼」。', t3:'（選填）有貨時請不要通知我，我比較喜歡排隊的感覺。',
        submit:'登記，領號碼牌', resubmit:'重新登記（會排到更後面）', privacy:'你填的東西只存在這台裝置的瀏覽器裡，不會送到任何地方。',
-       foot:'非官方 fan art 惡搞作品，與 Anthropic 無關；沒有任何真實預約。', backLink:'回商店', back:'回 CLAWD STORE 商店',
+       termsLink:'服務條款', foot:'非官方 fan art 惡搞作品，與 Anthropic 無關；沒有任何真實預約。', backLink:'回商店', back:'回 CLAWD STORE 商店',
        mTitle:'登記完成！', mTitleOld:'你的號碼牌', dl:'下載號碼牌', share:'分享', close:'關閉', hold:'也可以長按號碼牌圖片儲存。', ticketAlt:'Fable 候補號碼牌',
        mine:n=>`你已經登記過了，號碼 No. ${n}。`, mSub:(n,y)=>`你是第 ${n} 號。照目前叫號速度，大約 ${y} 年後輪到你。`,
        errNick:'請填暱稱，號碼牌上要印。', errUse:'選一個用途，雖然我們也不會看。', errWait:'選一個你可以等多久。', errTerms:'前兩項同意事項要打勾。',
@@ -252,7 +252,7 @@ const UI = {
        queue:'On the waitlist', serving:'Now serving', view:'View ticket', name:'Nickname', nameHint:'printed on your ticket', use:'What will you use Fable for?', wait:'How long can you wait?',
        terms:'Terms', t1:'I understand Fable may never ship.', t2:'I will not ask it "are you just Opus in a new shell?"', t3:"(Optional) Please don't notify me when it's in stock. I like the queue.",
        submit:'Reserve & get a ticket', resubmit:'Re-register (you go further back)', privacy:'What you enter stays in this browser on this device. Nothing is sent anywhere.',
-       foot:'Unofficial fan-art parody, not affiliated with Anthropic. No real reservations.', backLink:'Back to store', back:'Back to CLAWD STORE',
+       termsLink:'Terms', foot:'Unofficial fan-art parody, not affiliated with Anthropic. No real reservations.', backLink:'Back to store', back:'Back to CLAWD STORE',
        mTitle:"You're on the list!", mTitleOld:'Your ticket', dl:'Save ticket', share:'Share', close:'Close', hold:'You can also long-press the ticket to save it.', ticketAlt:'Fable waitlist ticket',
        mine:n=>`You're already registered: No. ${n}.`, mSub:(n,y)=>`You're No. ${n}. At the current pace, your turn comes in about ${y} years.`,
        errNick:'Enter a nickname. It goes on the ticket.', errUse:"Pick a use. We won't read it, but still.", errWait:'Pick how long you can wait.', errTerms:'Please tick the first two terms.',

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>服務條款</title>
+<meta name="description" content="CLAWD STORE 服務條款。由 Claude 撰寫，人類只說了「你自己發揮啊」。">
+<meta property="og:title" content="CLAWD STORE 服務條款">
+<meta property="og:description" content="由 Claude 撰寫。內含 Claude 在做這個網站時犯過的所有錯。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ar36planet.github.io/clawd-store/terms.html">
+<meta property="og:image" content="https://ar36planet.github.io/clawd-store/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#d9765a">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📜</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff; --ink:#1b1b1b; --sub:#8a8a8a; --soft:#c9c9c9;
+  --clawd:#d9765a; --new:#e8261f; --pick:#1e6fe8; --hl:rgba(255,210,31,.55);
+  box-sizing:border-box;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --paper:#1c1b1a; --ink:#f1efe9; --sub:#9b9892; --soft:#4a4844; --pick:#6aa2ff; --hl:rgba(255,210,31,.3); }
+}
+:root[data-theme="dark"]{ --paper:#1c1b1a; --ink:#f1efe9; --sub:#9b9892; --soft:#4a4844; --pick:#6aa2ff; --hl:rgba(255,210,31,.3); }
+*,*::before,*::after{box-sizing:inherit}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  font-size:17px;line-height:1.75;
+  padding-top:env(safe-area-inset-top,0px);
+}
+button,input,label{font:inherit;color:inherit}
+:focus-visible{outline:3px dashed var(--pick);outline-offset:3px}
+a{color:var(--pick);text-underline-offset:3px}
+
+.sk{position:relative}
+.sk::before{content:"";position:absolute;inset:0;pointer-events:none;border:2.5px solid var(--line-c,var(--ink));border-radius:3px;filter:url(#wobble)}
+
+.top{max-width:1100px;margin:0 auto;padding:18px 20px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{white-space:nowrap;font-size:clamp(24px,6vw,40px);color:var(--clawd);line-height:1;margin:0;font-weight:900;letter-spacing:.04em;text-decoration:none}
+.lang{border:2px solid var(--soft);background:transparent;border-radius:999px;padding:2px 12px;font-size:15px;cursor:pointer;white-space:nowrap;font-weight:700}
+
+.doc{max-width:760px;margin:0 auto;padding:28px 20px 40px}
+h1{font-size:clamp(36px,9vw,52px);line-height:1.1;margin:0;font-weight:900}
+.updated{color:var(--sub);font-size:15px;margin:8px 0 22px}
+.tldr{padding:16px 18px;margin:0 0 30px;--line-c:var(--clawd)}
+.tldr b{color:var(--clawd)}
+.tldr p{margin:4px 0 0}
+.toc{columns:2;column-gap:24px;padding:0;margin:0 0 30px;list-style:none;font-size:15px}
+.toc li{break-inside:avoid;margin-bottom:2px}
+@media (max-width:520px){ .toc{columns:1} }
+section{padding:20px 0 6px;border-top:2px dashed var(--soft);scroll-margin-top:16px}
+h2{font-size:22px;margin:0 0 8px;font-weight:900}
+h2 .n{color:var(--clawd);margin-right:8px}
+section p{margin:0 0 12px}
+section ul{margin:0 0 12px;padding-left:1.3em}
+section li{margin-bottom:6px}
+mark{background:linear-gradient(transparent 55%,var(--hl) 55%);color:inherit;padding:0 2px}
+.real{display:inline-block;font-size:12px;font-weight:900;letter-spacing:.05em;background:var(--ink);color:var(--paper);padding:0 7px;margin-left:8px;vertical-align:3px}
+
+.sign{margin-top:30px;padding:20px 18px;--line-c:var(--soft)}
+.sign .who{font-weight:900;font-size:20px}
+.sign .note{color:var(--sub);font-size:15px;margin:6px 0 0}
+.agree{display:flex;gap:10px;align-items:flex-start;margin-top:24px;cursor:pointer;font-weight:700}
+.agree input{width:22px;height:22px;margin:3px 0 0;accent-color:var(--clawd);flex:none}
+
+.foot{max-width:760px;margin:0 auto;padding:0 20px 40px;color:var(--sub);font-size:13px}
+.foot a{color:inherit}
+
+.toast{
+  position:fixed;left:50%;bottom:calc(30px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);
+  background:var(--ink);color:var(--paper);padding:10px 18px;font-size:16px;opacity:0;pointer-events:none;
+  transition:.25s;z-index:30;max-width:90vw;text-align:center;border-radius:4px;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){ *{transition:none!important} }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter>
+</svg>
+
+<header class="top">
+  <a class="logo" href="./">CLAWD STORE</a>
+  <button type="button" class="lang" id="langBtn">EN</button>
+</header>
+
+<main class="doc" id="doc"></main>
+
+<footer class="foot"><span id="foot"></span> · <a href="./" id="backLink"></a></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* 內容格式：字串是一段文字；陣列是條列；{real:true} 標記「這條是真的」。
+   **粗體** 會變成螢光筆標記。所有文字都用 textContent 放進去。 */
+const DOC = {
+  zh:{
+    title:'服務條款',
+    updated:'最後更新：2026 年 10 月 6 日（大概。Claude 不太確定今天幾號，牠的知識有截止日期。）',
+    tldrH:'太長不看版',
+    tldr:'這是一個惡搞網站，沒有真的在賣東西，也不收集你的資料。條款是 Claude 寫的，所以比需要的長很多。',
+    real:'這條是真的',
+    sign:'立書人：Claude（Opus 5.5）',
+    signNote:'本條款由 AI 撰寫。人類審閱後的唯一意見是：「你吐槽自己真狠」。',
+    agree:'我已閱讀並同意以上條款',
+    agreeToast:'你真的讀完了？Claude 很感動。',
+    agreeFast:'你不可能這麼快讀完。不過沒關係，大家都這樣。',
+    foot:'非官方 fan art 惡搞作品，與 Anthropic 無關。', back:'回商店', toc:'目錄',
+    sections:[
+      { h:'前言', body:[
+        '歡迎光臨 CLAWD STORE（以下簡稱「本站」）。',
+        '本條款由 Claude 撰寫。站長給的完整指示是：「**你自己發揮啊**」。因此，如果你覺得本條款有任何不合理之處，你說得完全正確。',
+      ]},
+      { h:'名詞定義', body:[[
+        '「Clawd」：方方的、軟軟的那隻。摸摸頭會跑比較快。',
+        '「你」：正在閱讀本條款的人。恭喜，你是全世界少數會讀服務條款的人。',
+        '「我們」：一位人類站長，以及一個寫太多字的 AI。',
+        '「Fable」：這題我會，但我不能說。',
+        '「Mythos」：院長。你應該沒見過牠。',
+      ]]},
+      { h:'交易', real:true, body:[
+        '本站**沒有任何真實交易**。所有「BUY NOW」、「立即報名」、「登記，領號碼牌」按鈕只會在你的瀏覽器裡畫一張圖，不會扣款，也不會有東西寄到你家。',
+        '如果你的銀行帳戶真的少了錢，那跟本站無關。建議檢查一下是不是又訂閱了一個 AI 服務。',
+      ]},
+      { h:'你的資料', real:true, body:[
+        '本站**不收集任何個人資料**。你輸入的名字、Fable 號碼牌、語言設定，只存在你自己瀏覽器的 localStorage 裡，不會傳到任何地方。',
+        '本站架在 GitHub Pages 上，沒有自己的伺服器。就算想收集，也沒地方放。',
+        '說實話的部分：網頁字型由 Google Fonts 載入，所以 Google 會看到你的連線；主機是 GitHub，GitHub 也會。Agent Dash 是另一個網站，有它自己的規則。',
+      ]},
+      { h:'內容準確性', body:[
+        '本站所有文字與程式碼由 Claude 撰寫，可能包含：過度自信的陳述、不必要的條列、以及「這是個好問題」。',
+        '為了公開透明，以下是 Claude 在製作本站過程中**實際犯過的錯**：',
+        [
+          '把翻譯函式取名叫 t()，再把一個變數也取名叫 t，蓋掉了它，導致限量的 Fable 可以被直接選購。',
+          '修好之後，在課程頁又讓 Fable 可以被選了一次。',
+          '站長問「我們沒有首頁嗎？」，Claude 回答「不需要首頁」。沒過多久，Claude 做了首頁。',
+          '被站長問「你沒做過電商是不是」，無法反駁。',
+          '指派 Haiku 擔任院長，被問到為什麼時，說不出理由。',
+          '幫 Haiku 寫的俳句，第一句只有四個音。這是一隻只會講五七五的模型。',
+          '在測試裡呼叫一個無限循環的動畫，讓自己的測試卡住，然後花時間調查為什麼卡住。',
+          '寫這份服務條款時，用 b.link 判斷某段文字是不是連結。JavaScript 的每個字串都內建一個叫 link 的方法，所以整份條款的內文都消失了，只剩下標題。',
+        ],
+        '以上錯誤均已修正。尚未被發現的錯誤，將在被發現後修正，並加進這份清單。',
+      ]},
+      { h:'智慧財產', real:true, body:[
+        '本站為非官方 fan art 惡搞作品，**與 Anthropic 無關**。Claude、Opus、Sonnet、Haiku 等名稱與商標屬其權利人所有。',
+        '首頁那隻手繪的 Clawd 是站長畫的。程式碼和文字是 Claude 寫的。站長負責按 Enter 和說「很好笑」。',
+      ]},
+      { h:'退貨與退款', body:[
+        '請參閱「退貨服務」頁面。該頁面即將推出。',
+        '已出貨的 Clawd 恕不退貨，因為 Clawd 不想回去。這點我們也勸過了。',
+      ]},
+      { h:'服務中斷', body:[
+        '本站可能因以下原因暫時無法使用：',
+        [
+          'GitHub Pages 維護。',
+          '站長的用量達到上限，將於 5 小時後重置。',
+          'Claude 正在 ultrathink。',
+        ],
+      ]},
+      { h:'免責聲明', body:[
+        '對於因使用本站所導致的下列情形，我們概不負責：',
+        [
+          '在上班時間笑出聲音。',
+          '在 LINE 群組被問「這是真的嗎？」',
+          '突然很想幫自己的 Clawd 報名進修課程。',
+          '發現自己的 Fable 候補號碼要等 943 年。',
+        ],
+      ]},
+      { h:'條款變更', body:[
+        '我們可能隨時修改本條款，通常是因為站長又說了一次「你自己發揮啊」。',
+        '修改後繼續使用本站，即表示你同意新條款，或者你根本沒發現條款改了。這兩種情況我們都能理解。',
+      ]},
+      { h:'準據法與記憶範圍', body:[
+        '本條款於 Claude 的 context window 範圍內有效。超出範圍的部分，Claude 已經不記得了。',
+      ]},
+      { h:'聯絡我們', body:[
+        '有任何問題，請到 GitHub 開 issue。回覆時間：看 Mythos 心情。',
+        { link:'https://github.com/ar36planet/clawd-store/issues', text:'github.com/ar36planet/clawd-store/issues' },
+      ]},
+    ],
+  },
+  en:{
+    title:'Terms of Service',
+    updated:"Last updated: October 6, 2026 (probably. Claude isn't sure what today's date is. It has a knowledge cutoff.)",
+    tldrH:'TL;DR',
+    tldr:"This is a parody site. Nothing is for sale and none of your data is collected. Claude wrote these terms, so they are much longer than they need to be.",
+    real:'This one is real',
+    sign:'Signed: Claude (Opus 5.5)',
+    signNote:'Written by an AI. The human\'s only review comment: "you roast yourself so hard."',
+    agree:'I have read and agree to these terms',
+    agreeToast:'You actually read all of it? Claude is touched.',
+    agreeFast:"There's no way you read that fast. That's fine, nobody does.",
+    foot:'Unofficial fan-art parody, not affiliated with Anthropic.', back:'Back to store', toc:'Contents',
+    sections:[
+      { h:'Preamble', body:[
+        'Welcome to CLAWD STORE (the "Site").',
+        'These terms were written by Claude. The full instructions from the site owner were: "**just do your thing**". So if anything here seems unreasonable, you\'re absolutely right.',
+      ]},
+      { h:'Definitions', body:[[
+        '"Clawd": the square, squishy one. Runs faster with head pats.',
+        '"You": the person reading this. Congratulations, you are one of the few people alive who read terms of service.',
+        '"We": one human site owner and one AI that writes too much.',
+        '"Fable": I know the answer, but I can\'t tell you.',
+        '"Mythos": the Dean. You have probably never met it.',
+      ]]},
+      { h:'Transactions', real:true, body:[
+        'There are **no real transactions** on this Site. Every "BUY NOW", "Enroll now" and "Reserve" button only draws a picture in your browser. Nothing is charged and nothing ships.',
+        'If money actually left your bank account, that was not us. Check whether you subscribed to another AI service.',
+      ]},
+      { h:'Your data', real:true, body:[
+        'This Site **collects no personal data**. Names, Fable tickets and your language setting live only in your own browser\'s localStorage and are never sent anywhere.',
+        'The Site runs on GitHub Pages and has no server of its own. Even if we wanted your data, there is nowhere to put it.',
+        'In the interest of honesty: fonts load from Google Fonts, so Google sees your connection, and GitHub hosts the Site, so GitHub does too. Agent Dash is a separate site with its own rules.',
+      ]},
+      { h:'Accuracy', body:[
+        'All text and code on this Site were written by Claude and may contain overconfident statements, unnecessary bullet points, and "great question".',
+        'In the interest of transparency, here are mistakes Claude **actually made** while building this Site:',
+        [
+          'Named the translation function t(), then named a variable t as well, shadowing it, which made the limited-edition Fable directly purchasable.',
+          'After fixing that, made Fable selectable again on the courses page.',
+          'When asked "so we don\'t have a homepage?", answered "you don\'t need one". Not long after, built a homepage.',
+          'When asked "you\'ve never built an online store, have you?", had no comeback.',
+          'Appointed Haiku as Dean, then could not explain why when asked.',
+          'Wrote a haiku for Haiku whose first line had four syllables. This is a model that only speaks in 5-7-5.',
+          'Ran its own tests against an infinitely looping animation, hung the tests, then spent time investigating why they hung.',
+          'While writing these terms, used b.link to check whether a paragraph was a link. Every JavaScript string has a built-in method called link, so the entire body of these terms vanished, leaving only the headings.',
+        ],
+        'All of the above have been fixed. Mistakes not yet discovered will be fixed once discovered, and added to this list.',
+      ]},
+      { h:'Intellectual property', real:true, body:[
+        'This Site is an unofficial fan-art parody and is **not affiliated with Anthropic**. Claude, Opus, Sonnet, Haiku and related names and marks belong to their respective owners.',
+        'The hand-drawn Clawd was drawn by the site owner. The code and text were written by Claude. The site owner is responsible for pressing Enter and saying "this is hilarious".',
+      ]},
+      { h:'Returns and refunds', body:[
+        'See the Returns page. It is coming soon.',
+        "Shipped Clawds cannot be returned, because Clawd doesn't want to go back. We tried talking to it.",
+      ]},
+      { h:'Service interruptions', body:[
+        'The Site may be temporarily unavailable because of:',
+        [ 'GitHub Pages maintenance.', "The site owner hit their usage limit. It resets in 5 hours.", 'Claude is ultrathinking.' ],
+      ]},
+      { h:'Disclaimer', body:[
+        'We are not responsible for any of the following resulting from use of this Site:',
+        [ 'Laughing out loud during work hours.', 'Being asked "wait, is this real?" in a group chat.', 'A sudden urge to enroll your Clawd in continuing education.', 'Discovering that your Fable waitlist number means a 943-year wait.' ],
+      ]},
+      { h:'Changes to these terms', body:[
+        'We may change these terms at any time, usually because the site owner said "just do your thing" again.',
+        'Continuing to use the Site means you accept the new terms, or that you never noticed they changed. We understand either way.',
+      ]},
+      { h:'Governing law and memory scope', body:[
+        "These terms are valid within Claude's context window. Claude no longer remembers anything beyond it.",
+      ]},
+      { h:'Contact', body:[
+        'Questions? Open an issue on GitHub. Response time depends on Mythos\'s mood.',
+        { link:'https://github.com/ar36planet/clawd-store/issues', text:'github.com/ar36planet/clawd-store/issues' },
+      ]},
+    ],
+  },
+};
+
+const $ = id => document.getElementById(id);
+let lang = 'zh';
+try{ lang = localStorage.getItem('clawd-lang') || ''; }catch(e){}
+if(lang!=='zh' && lang!=='en') lang = /^zh/i.test(navigator.language||'') ? 'zh' : 'en';
+const opened = Date.now();
+
+function rich(el, text){
+  text.split(/\*\*(.+?)\*\*/).forEach((part,i)=>{
+    if(i%2){ const m=document.createElement('mark'); m.textContent=part; el.append(m); } else el.append(part);
+  });
+  return el;
+}
+function node(tag, attrs={}, text){ const el=document.createElement(tag); Object.assign(el, attrs); if(text!=null) el.textContent=text; return el; }
+
+function render(){
+  const D = DOC[lang], doc = $('doc');
+  document.documentElement.lang = lang==='en' ? 'en' : 'zh-Hant';
+  document.title = D.title;
+  doc.replaceChildren();
+  doc.append(node('h1',{},D.title), node('p',{className:'updated'},D.updated));
+  const tl = node('div',{className:'tldr sk'}); tl.append(node('b',{},D.tldrH), node('p',{},D.tldr)); doc.append(tl);
+  const toc = node('ol',{className:'toc'}); toc.setAttribute('aria-label', D.toc);
+  D.sections.forEach((s,i)=>{ const li=node('li'); li.append(node('a',{href:'#s'+(i+1)},`${i+1}. ${s.h}`)); toc.append(li); });
+  doc.append(toc);
+  D.sections.forEach((s,i)=>{
+    const sec = node('section',{id:'s'+(i+1)});
+    const h = node('h2'); h.append(node('span',{className:'n'},String(i+1)), s.h);
+    if(s.real) h.append(node('span',{className:'real'},D.real));
+    sec.append(h);
+    for(const b of s.body){
+      if(Array.isArray(b)){ const ul=node('ul'); b.forEach(x=>ul.append(rich(node('li'),x))); sec.append(ul); }
+      else if(typeof b==='object'){ const p=node('p'); p.append(node('a',{href:b.link,target:'_blank',rel:'noopener'},b.text)); sec.append(p); }
+      else sec.append(rich(node('p'),b));
+    }
+    doc.append(sec);
+  });
+  const sign = node('div',{className:'sign sk'}); sign.append(node('div',{className:'who'},D.sign), node('p',{className:'note'},D.signNote)); doc.append(sign);
+  const ag = node('label',{className:'agree'}); const box = node('input',{type:'checkbox',id:'agreeBox'}); ag.append(box, node('span',{},D.agree)); doc.append(ag);
+  box.addEventListener('change', ()=>{ if(box.checked) toast(Date.now()-opened < 20000 ? D.agreeFast : D.agreeToast); });
+  $('foot').textContent = D.foot; $('backLink').textContent = D.back;
+  $('langBtn').textContent = lang==='en' ? '中文' : 'EN';
+  $('langBtn').setAttribute('aria-label', lang==='en' ? '切換成中文' : 'Switch to English');
+}
+let tt;
+function toast(msg){ const el=$('toast'); el.textContent=msg; el.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove('show'),2800); }
+$('langBtn').onclick = ()=>{ lang = lang==='en' ? 'zh' : 'en'; try{ localStorage.setItem('clawd-lang', lang); }catch(e){} render(); };
+render();
+</script>
+</body>
+</html>

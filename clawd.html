@@ -245,7 +245,7 @@ button.chip{border:0;background:none;padding:0;font:inherit;color:inherit}
     </div>
   </section>
 </main>
-<footer class="foot" data-i18n="foot">非官方 fan art 惡搞作品，與 Anthropic 無關；頁面上沒有任何真實交易。</footer>
+<footer class="foot"><span data-i18n="foot">非官方 fan art 惡搞作品，與 Anthropic 無關；頁面上沒有任何真實交易。</span> · <a href="terms.html" data-i18n="termsLink">服務條款</a></footer>
 
 <div class="bar" id="bar">
   <div class="bar-in">
@@ -319,7 +319,7 @@ const ACC = [
 ];
 const UI = {
   zh:{ more:'越往下滑，越有可能手滑。', acc:'加購配件', buyer:'收件人', buyerPh:'名字或暱稱，會印在收據上',
-       foot:'非官方 fan art 惡搞作品，與 Anthropic 無關；頁面上沒有任何真實交易。', cart:'購物車',
+       termsLink:'服務條款', foot:'非官方 fan art 惡搞作品，與 Anthropic 無關；頁面上沒有任何真實交易。', cart:'購物車',
        dl:'下載收據', again:'再買一隻', hold:'也可以長按收據圖片儲存。', invAlt:'Clawd 購買收據',
        dec:'減少', inc:'增加', school:'進修方案', schoolText:'買了之後，記得送牠去上課。原價 USD 2,999，現在 USD 7 起 →', annTag:'限量', ann:'Fable 限量預約登記中，先領號碼牌 →', annMine:n=>`你的 Fable 候補號碼 No. ${n}，看號碼牌 →`, patLabel:'摸摸頭',
        pats:['嘿嘿。','（開心地晃了晃腳）','跑速 +3%。','再摸一下，build 就會過。','這邊，這邊也要摸。'], patMax:'好啦好啦，已經是最快了。', qty:n=>`${n} 數量`, sep:'：',
@@ -331,7 +331,7 @@ const UI = {
              ship:'運費（Clawd 自己走過去）', stamp:'已出貨', total:'總計', says:q=>`Clawd 留言：「${q}」`,
              fine:['本商品出貨後恕不退貨，因為 Clawd 不想回去。','請勿於週五下午與 Clawd 一同部署。','本收據為 fan art 惡搞作品，非真實交易。'] } },
   en:{ more:'The further you scroll, the more likely you slip and buy.', acc:'Accessories', buyer:'Recipient', buyerPh:'Name or nickname, printed on the receipt',
-       foot:'Unofficial fan-art parody, not affiliated with Anthropic. No real transactions happen here.', cart:'Cart',
+       termsLink:'Terms', foot:'Unofficial fan-art parody, not affiliated with Anthropic. No real transactions happen here.', cart:'Cart',
        dl:'Save receipt', again:'Buy another', hold:'You can also long-press the receipt to save it.', invAlt:'Clawd purchase receipt',
        dec:'Decrease', inc:'Increase', school:'Continuing education', schoolText:'After you buy, send it to class. Was USD 2,999, now from USD 7 →', annTag:'LIMITED', ann:'Fable reservations are open. Grab a waitlist ticket →', annMine:n=>`Your Fable waitlist number: No. ${n}. View ticket →`, patLabel:'Pat Clawd',
        pats:['Hehe.','(happily wiggles its legs)','Speed +3%.','One more pat and the build will pass.','Here, this side too.'], patMax:'OK OK, this is already max speed.', qty:n=>`${n} quantity`, sep:': ',
