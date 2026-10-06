@@ -371,9 +371,9 @@ $('shop').addEventListener('click', e=>{
 });
 
 document.addEventListener('change', e=>{
-  const t = e.target; if(!t.name) return;
-  const g = ALL.find(x=>x.id===t.name); if(!g) return;
-  const o = opt(g.id, t.value);
+  const el = e.target; if(!el.name) return;
+  const g = ALL.find(x=>x.id===el.name); if(!g) return;
+  const o = opt(g.id, el.value);
   if(o.locked){
     fablePeek = true; $('bubble').textContent = 'Fable' + t('sep') + tr(o,'quote');
     setTimeout(()=>{ fablePeek=false; update(); }, 2600);
