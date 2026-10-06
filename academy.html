@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CLAWD ACADEMY</title>
+<meta name="description" content="把你的 Clawd 送去進修：寫測試、看懂需求、戒除「你說得完全正確」。結業發證書。CLAWD STORE 非官方 fan art。">
+<meta property="og:title" content="CLAWD ACADEMY｜把你的 Clawd 送去進修">
+<meta property="og:description" content="原價 USD 2,999，限時只要 USD 7 起。結業發證書。非官方 fan art。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ar36planet.github.io/clawd-store/academy.html">
+<meta property="og:image" content="https://ar36planet.github.io/clawd-store/og-academy.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#d9765a">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff; --ink:#1b1b1b; --sub:#8a8a8a; --soft:#c9c9c9;
+  --clawd:#d9765a; --new:#e8261f; --pick:#1e6fe8; --pick-fill:#aac2ec;
+  --buy:#ffd21f; --buy-ink:#1b1b1b;
+  box-sizing:border-box;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1c1b1a; --ink:#f1efe9; --sub:#9b9892; --soft:#4a4844;
+    --pick-fill:#2c4a7a; --pick:#6aa2ff;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1c1b1a; --ink:#f1efe9; --sub:#9b9892; --soft:#4a4844;
+  --pick-fill:#2c4a7a; --pick:#6aa2ff;
+}
+*,*::before,*::after{box-sizing:inherit}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  font-size:17px;line-height:1.55;
+  padding-top:env(safe-area-inset-top,0px);
+}
+.hand{font-weight:700}
+button,input,label{font:inherit;color:inherit}
+:focus-visible{outline:3px dashed var(--pick);outline-offset:3px}
+[hidden]{display:none!important}
+
+.sk{position:relative}
+.sk::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  border:2.5px solid var(--line-c,var(--ink));border-radius:3px;filter:url(#wobble);
+}
+
+.announce{display:block;background:#1b1b1b;color:#fff;text-align:center;font-size:14px;font-weight:700;letter-spacing:.03em;padding:8px 16px;line-height:1.4}
+.announce b{background:var(--new);color:#fff;font-weight:900;padding:1px 7px;margin-right:8px;font-size:12px;vertical-align:1px;font-variant-numeric:tabular-nums}
+:root[data-theme="dark"] .announce{background:#f1efe9;color:#1b1b1b}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .announce{background:#f1efe9;color:#1b1b1b} }
+
+.top{max-width:1100px;margin:0 auto;padding:18px 20px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{white-space:nowrap;font-size:clamp(24px,6vw,40px);color:var(--clawd);line-height:1;margin:0;font-weight:900;letter-spacing:.04em;text-decoration:none}
+.lang{border:2px solid var(--soft);background:transparent;border-radius:999px;padding:2px 12px;font-size:15px;cursor:pointer;white-space:nowrap}
+.lang:hover{border-color:var(--sub)}
+
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px 60px}
+.hero{display:grid;gap:12px;align-items:center;padding:20px 0 24px}
+@media (min-width:820px){ .hero{grid-template-columns:1fr 1.15fr;gap:40px;padding:36px 0 40px} }
+.stage{display:grid;place-items:center;min-height:260px}
+.figure{position:relative;width:min(72%,340px);margin-top:40px}
+.figure img{display:block;width:100%;height:auto}
+.cap{position:absolute;left:20%;top:-22%;width:60%;transform:rotate(-8deg);overflow:visible}
+
+.kicker{color:var(--clawd);font-weight:900;letter-spacing:.08em;font-size:16px;margin:0}
+.title{font-size:clamp(40px,10vw,60px);margin:4px 0 0;line-height:1.05;font-weight:900;letter-spacing:.02em}
+.lead{font-size:20px;margin:10px 0 18px;font-weight:500}
+.deal{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.deal s{color:var(--sub);font-size:22px;font-weight:700}
+.deal .now{font-size:40px;font-weight:900;line-height:1}
+.deal .from{font-size:18px;font-weight:700}
+.stats{color:var(--sub);font-size:15px;margin:10px 0 0}
+
+h2.sec{font-size:28px;margin:0 0 4px;font-weight:900}
+.secsub{color:var(--sub);margin:0 0 16px}
+.block{padding:26px 0 22px;border-top:2px dashed var(--soft)}
+
+.chips{display:flex;flex-wrap:wrap;gap:12px}
+.chip{position:relative;cursor:pointer}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-block;padding:6px 16px;font-size:18px;line-height:1.3;--line-c:var(--soft);background:var(--paper);transition:background .15s}
+.chip span::before{border-width:3px}
+.chip:hover span{--line-c:var(--sub)}
+.chip input:checked + span{background:var(--pick-fill);--line-c:var(--pick)}
+.chip input:focus-visible + span{outline:3px dashed var(--pick);outline-offset:3px}
+.chip.locked span{color:var(--sub)}
+.field input{width:100%;max-width:360px;font-size:20px;padding:8px 14px;border:0;background:transparent}
+.field{display:inline-block;margin-top:14px}
+.flabel{display:block;font-size:15px;color:var(--sub);margin-top:16px}
+
+.courses{display:grid;gap:14px}
+@media (min-width:640px){ .courses{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (min-width:980px){ .courses{grid-template-columns:repeat(3,minmax(0,1fr))} }
+.course{display:flex;flex-direction:column;gap:6px;padding:16px;cursor:pointer;--line-c:var(--soft);background:var(--paper);transition:background .15s}
+.course:hover{--line-c:var(--sub)}
+.course input{position:absolute;opacity:0;pointer-events:none}
+.course:has(input:checked){--line-c:var(--pick);background:color-mix(in srgb,var(--pick-fill) 45%,var(--paper))}
+.course:has(input:focus-visible){outline:3px dashed var(--pick);outline-offset:3px}
+.course:has(input:disabled){opacity:.45;cursor:not-allowed}
+.course .badge{align-self:flex-start;font-size:12px;font-weight:900;letter-spacing:.05em;background:var(--ink);color:var(--paper);padding:1px 8px}
+.course .badge:empty{display:none}
+.course h3{margin:0;font-size:19px;line-height:1.35}
+.course p{margin:0;color:var(--sub);font-size:14px;flex:1}
+.course .meta{font-size:13px;color:var(--sub)}
+.course .why{font-size:13px;color:var(--new);font-weight:700;min-height:0}
+.course .row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:4px}
+.course .row s{color:var(--sub);font-size:14px}
+.course .row b{font-size:20px}
+.course .tick{width:26px;height:26px;border:2.5px solid var(--soft);border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:15px;color:transparent;flex:none}
+.course:has(input:checked) .tick{background:var(--pick);border-color:var(--pick);color:#fff}
+
+.reviews{display:grid;gap:14px}
+@media (min-width:820px){ .reviews{grid-template-columns:repeat(3,minmax(0,1fr))} }
+.review{padding:16px;margin:0;--line-c:var(--soft)}
+.review blockquote{margin:0 0 10px;font-size:16px;font-weight:500;white-space:pre-line}
+.review figcaption{color:var(--sub);font-size:14px}
+.stars{color:#e8a91f;letter-spacing:2px;margin-bottom:6px}
+
+.faq dt{font-weight:700;margin-top:12px}
+.faq dd{margin:2px 0 0;color:var(--sub)}
+
+.checkout{position:sticky;bottom:0;z-index:5;background:var(--paper);border-top:2.5px solid var(--ink);padding:12px 20px calc(12px + env(safe-area-inset-bottom,0px))}
+.checkout-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.checkout .t{font-size:24px;font-weight:900;line-height:1.1}
+.checkout .s{color:var(--sub);font-size:14px}
+.err{color:var(--new);font-size:14px;font-weight:700}
+
+.buy{
+  display:inline-flex;align-items:center;gap:10px;border:0;cursor:pointer;text-decoration:none;
+  background:var(--buy);color:var(--buy-ink);font-size:22px;font-weight:900;padding:10px 26px;letter-spacing:.04em;
+  transform:rotate(-.6deg);transition:transform .12s;
+}
+.buy:hover{transform:rotate(-.6deg) scale(1.03)}
+.buy:active{transform:rotate(-.6deg) scale(.97)}
+.ghost{background:transparent;color:var(--ink)}
+
+.foot{max-width:1100px;margin:0 auto;padding:20px 20px 30px;color:var(--sub);font-size:13px}
+.foot a{color:inherit}
+
+.toast{
+  position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);
+  background:var(--ink);color:var(--paper);padding:10px 18px;font-size:16px;opacity:0;pointer-events:none;
+  transition:.25s;z-index:30;max-width:90vw;text-align:center;border-radius:4px;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+.modal{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.45);display:none;align-items:flex-end;justify-content:center}
+.modal.open{display:flex}
+@media (min-width:700px){ .modal{align-items:center} }
+.sheet{background:var(--paper);width:100%;max-width:640px;max-height:92%;overflow:auto;padding:22px 20px calc(20px + env(safe-area-inset-bottom,0px))}
+.sheet h3{font-size:26px;margin:0;font-weight:900}
+.sheet p{color:var(--sub);margin:0 0 14px}
+.sheet img{width:100%;display:block;border:1px solid var(--soft);background:#fff}
+.sheet .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.sheet .row .buy{font-size:18px;padding:9px 18px}
+.hint{font-size:14px;color:var(--sub);margin-top:10px}
+
+@media (prefers-reduced-motion:reduce){ *{transition:none!important;animation:none!important} }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter>
+</svg>
+
+<div class="announce" role="timer" aria-live="off"><b id="clock">09:59</b><span data-i18n="ann">限時優惠倒數中，倒數完會再延長</span></div>
+<header class="top">
+  <a class="logo hand" href="./" id="logo">CLAWD STORE</a>
+  <button type="button" class="lang hand" id="langBtn">EN</button>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="stage">
+      <div class="figure">
+        <svg class="cap" viewBox="0 0 200 110" aria-hidden="true" filter="url(#wobble)">
+          <path d="M60 52 L60 82 Q100 98 140 82 L140 52 Z" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M100 14 L192 44 L100 74 L8 44 Z" fill="#1b1b1b" stroke="#1b1b1b" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M100 44 L166 56 L166 88" fill="none" stroke="#ffd21f" stroke-width="5" stroke-linecap="round"/>
+          <path d="M160 86 L172 86 L170 104 L162 104 Z" fill="#ffd21f"/>
+        </svg>
+        <img src="clawd.webp" width="560" height="462" alt="戴著學士帽的 Clawd" id="clawdImg">
+      </div>
+    </div>
+    <div>
+      <p class="kicker">CLAWD ACADEMY</p>
+      <h1 class="title hand" data-i18n="title">把你的 Clawd<br>送去進修</h1>
+      <p class="lead" data-i18n="lead">寫測試、看懂需求、學會說「我不知道」。結業發證書。</p>
+      <div class="deal hand"><s>USD 2,999</s><span class="now">USD 7</span><span class="from" data-i18n="from">起</span></div>
+      <p class="stats" data-i18n="stats">已有 12,847 隻 Clawd 結業｜結業後平均多跑了 3% 的測試</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="sec hand" data-i18n="who">誰要去上課？</h2>
+    <p class="secsub" data-i18n="whoSub">有些課程有型號限定。</p>
+    <div class="chips" id="models" role="radiogroup"></div>
+    <label class="flabel" for="cname" data-i18n="nameL">學員名字（會印在證書上）</label>
+    <span class="field sk"><input id="cname" maxlength="16" placeholder="Clawd"></span>
+  </section>
+
+  <section class="block">
+    <h2 class="sec hand" data-i18n="courses">課程</h2>
+    <p class="secsub" data-i18n="coursesSub">可以複選。上越多門，證書越長。</p>
+    <div class="courses" id="courses"></div>
+  </section>
+
+  <section class="block">
+    <h2 class="sec hand" data-i18n="reviews">學員心得</h2>
+    <div class="reviews" id="reviews"></div>
+  </section>
+
+  <section class="block">
+    <h2 class="sec hand" data-i18n="faq">常見問題</h2>
+    <dl class="faq" id="faq"></dl>
+  </section>
+</main>
+
+<div class="checkout">
+  <div class="checkout-in">
+    <div><div class="t hand" id="total">USD 0</div><div class="s" id="summary"></div><div class="err" id="err" role="alert"></div></div>
+    <button type="button" class="buy hand sk" id="enroll" data-i18n="enroll">立即報名</button>
+  </div>
+</div>
+
+<footer class="foot"><span data-i18n="foot">非官方 fan art 惡搞作品，與 Anthropic 無關；沒有任何真實課程。</span> · <a href="./" data-i18n="backLink">回商店</a> · <a href="fable.html">Fable</a></footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="sheet">
+    <h3 class="hand" id="mTitle" data-i18n="mTitle">恭喜結業！</h3>
+    <p id="mSub"></p>
+    <img id="certImg" alt="">
+    <div class="row">
+      <button class="buy hand sk" id="dlBtn" data-i18n="dl">下載證書</button>
+      <button class="buy hand sk ghost" id="shareBtn" data-i18n="share" hidden>分享</button>
+      <button class="buy hand sk ghost" id="closeBtn" data-i18n="close">關閉</button>
+    </div>
+    <div class="hint" data-i18n="hold">也可以長按證書圖片儲存。</div>
+  </div>
+</div>
+
+<script>
+const MODELS = [
+  { id:'haiku',  label:'Haiku',  ver:'Haiku 4.5' },
+  { id:'sonnet', label:'Sonnet', ver:'Sonnet 5.5' },
+  { id:'opus',   label:'Opus',   ver:'Opus 5.5' },
+  { id:'fable',  label:'Fable 🔒', locked:true },
+];
+const COURSES = [
+  { id:'tests', was:299, price:9,
+    zh:{ name:'寫測試（入門）', desc:'學會在說「測試全部通過」之前，真的跑一次測試。', len:'3 週（實際上課 0 天）',
+         grades:['A（這次真的有跑）','B+','通過（測試是自己寫的）'] },
+    en:{ name:'Writing Tests 101', desc:'Learn to actually run the tests before saying "all tests pass".', len:'3 weeks (0 days of class)',
+         grades:['A (actually ran them)','B+','Pass (wrote its own tests)'] } },
+  { id:'reqs', was:499, price:12,
+    zh:{ name:'看懂需求', desc:'從「改一下就好」推導出真正的需求。結業後可辨識 87% 的「順便」。', len:'一學期',
+         grades:['A-','B（還是做了「順便」）','通過'] },
+    en:{ name:'Reading Requirements', desc:'Derive the real ask from "just a quick change". Graduates spot 87% of "while you\'re at it"s.', len:'One semester',
+         grades:['A-','B (still did the "while you\'re at it")','Pass'] } },
+  { id:'idk', was:399, price:7,
+    zh:{ name:'說「我不知道」的勇氣', desc:'誠實是最好的幻覺解藥。期末考只有一題，正確答案是「我不知道」。', len:'1 天（但要鼓起勇氣）',
+         grades:['A+','我不知道','B'] },
+    en:{ name:'The Courage to Say "I Don\'t Know"', desc:'Honesty is the best cure for hallucination. The final exam has one question; the answer is "I don\'t know".', len:'1 day (plus courage)',
+         grades:['A+',"I don't know",'B'] } },
+  { id:'right', was:599, price:15, only:'sonnet',
+    zh:{ name:'戒除「你說得完全正確」', desc:'學會在你錯的時候，溫柔地說你錯了。', len:'6 週（含復健）',
+         grades:['你說得完全正確','B-','C（又說了一次）'] },
+    en:{ name:'Quitting "You\'re Absolutely Right"', desc:"Learn to gently tell you when you're wrong.", len:'6 weeks (incl. rehab)',
+         grades:["You're absolutely right",'B-','C (said it again)'] } },
+  { id:'refactor', was:799, price:19, only:'opus',
+    zh:{ name:'不要順手重構整個專案', desc:'只改你叫牠改的那一行。歷年結業率 12%。', len:'8 週',
+         grades:['Incomplete（順手重構了考卷）','C+','通過（只動了 300 個檔案）'] },
+    en:{ name:'Not Refactoring the Whole Project', desc:'Change only the line you were asked to. Historical pass rate: 12%.', len:'8 weeks',
+         grades:['Incomplete (refactored the exam)','C+','Pass (touched only 300 files)'] } },
+  { id:'brief', was:349, price:8, exempt:'haiku',
+    zh:{ name:'長話短說', desc:'把三頁的回答濃縮成一句。', len:'一句話的時間',
+         grades:['A','B（寫了三頁的摘要）','通過'] },
+    en:{ name:'Keeping It Short', desc:'Turn a three-page answer into one sentence.', len:'One sentence',
+         grades:['A','B (wrote a 3-page summary)','Pass'] } },
+];
+const REVIEWS = {
+  zh:[ { q:'上完測試課\n終於知道綠燈是\n真的有跑過', who:'Haiku 4.5・寫測試（入門）' },
+       { q:'上完課之後，我已經不會說「你說得完全正確」了。\n\n你說得完全正確。', who:'Sonnet 5.5・戒除「你說得完全正確」' },
+       { q:'我只是來上「不要順手重構」這門課，順便幫學院重構了整個課綱。', who:'Opus 5.5・不要順手重構整個專案' } ],
+  en:[ { q:'Took the test class\nnow I know the green light means\nsomeone ran the tests', who:'Haiku 4.5 · Writing Tests 101' },
+       { q:'Since the course, I no longer say "you\'re absolutely right."\n\nYou\'re absolutely right.', who:'Sonnet 5.5 · Quitting "You\'re Absolutely Right"' },
+       { q:'I only signed up for "Not Refactoring the Whole Project." While I was at it, I refactored the whole curriculum.', who:'Opus 5.5 · Not Refactoring the Whole Project' } ],
+};
+const FAQ = {
+  zh:[ ['可以退費嗎？','可以，但 Clawd 不想回來。'], ['上課地點在哪？','在你的 terminal 裡。'], ['上完會不會忘記？','context window 滿了就會。請重新報名。'] ],
+  en:[ ['Can I get a refund?','Yes, but Clawd doesn\'t want to come back.'], ['Where are classes held?','In your terminal.'], ['Will it forget what it learned?','Once the context window fills up, yes. Please re-enroll.'] ],
+};
+const UI = {
+  zh:{ ann:'限時優惠倒數中，倒數完會再延長', title:'把你的 Clawd<br>送去進修', lead:'寫測試、看懂需求、學會說「我不知道」。結業發證書。', from:'起',
+       stats:'已有 12,847 隻 Clawd 結業｜結業後平均多跑了 3% 的測試', who:'誰要去上課？', whoSub:'有些課程有型號限定。', nameL:'學員名字（會印在證書上）',
+       courses:'課程', coursesSub:'可以複選。上越多門，證書越長。', reviews:'學員心得', faq:'常見問題', enroll:'立即報名',
+       foot:'非官方 fan art 惡搞作品，與 Anthropic 無關；沒有任何真實課程。', backLink:'回商店', mTitle:'恭喜結業！', dl:'下載證書', share:'分享', close:'關閉',
+       hold:'也可以長按證書圖片儲存。', certAlt:'CLAWD ACADEMY 結業證書', capAlt:'戴著學士帽的 Clawd',
+       only:m=>`${m} 限定`, exempt:m=>`${m} 免修`, whyOnly:m=>`只收 ${m}`, whyExempt:m=>`${m} 本來就很短了`,
+       fableLock:'Fable 已經什麼都會了，只是不能說。', extended:'優惠延長！再 10 分鐘。',
+       none:'還沒選課', count:n=>`${n} 門課`, monthly:v=>`或分 24 期，每月 USD ${v}`, errNone:'至少選一門課，Clawd 已經在門口等了。',
+       mSub:(n,c)=>`${n} 已修畢 ${c} 門課。成績單在下面，請不要給牠看。`, saved:'證書已下載',
+       cert:{ head:'結業證書', certify:'茲證明', took:'已修畢下列課程，成績如下：', date:'結業日期', dean:'院長', seal:'結業',
+              fine:'本證書為 fan art 惡搞作品，不具任何學歷效力。' } },
+  en:{ ann:'Limited-time offer. When it ends, it gets extended.', title:'Send Your Clawd<br>Back to School', lead:'Writing tests, reading requirements, saying "I don\'t know". Certificate included.', from:'from',
+       stats:'12,847 Clawds graduated | Graduates run 3% more tests on average', who:"Who's going to class?", whoSub:'Some courses are model-specific.', nameL:'Student name (printed on the certificate)',
+       courses:'Courses', coursesSub:'Pick as many as you like. More courses, longer certificate.', reviews:'Student reviews', faq:'FAQ', enroll:'Enroll now',
+       foot:'Unofficial fan-art parody, not affiliated with Anthropic. No real courses.', backLink:'Back to store', mTitle:'Congratulations!', dl:'Save certificate', share:'Share', close:'Close',
+       hold:'You can also long-press the certificate to save it.', certAlt:'CLAWD ACADEMY certificate', capAlt:'Clawd wearing a graduation cap',
+       only:m=>`${m} only`, exempt:m=>`${m} exempt`, whyOnly:m=>`${m} only`, whyExempt:m=>`${m} is already short`,
+       fableLock:'Fable already knows everything. It just can\'t say.', extended:'Offer extended! 10 more minutes.',
+       none:'No courses yet', count:n=>`${n} course${n>1?'s':''}`, monthly:v=>`or 24 payments of USD ${v}/mo`, errNone:'Pick at least one course. Clawd is waiting at the door.',
+       mSub:(n,c)=>`${n} completed ${c} course${c>1?'s':''}. Transcript below. Please don't show it.`, saved:'Certificate saved',
+       cert:{ head:'CERTIFICATE OF COMPLETION', certify:'This certifies that', took:'has completed the following courses:', date:'Date', dean:'Dean', seal:'GRAD',
+              fine:'This certificate is a fan-art parody and has no academic standing.' } },
+};
+
+const $ = id => document.getElementById(id);
+let lang = 'zh';
+try{ lang = localStorage.getItem('clawd-lang') || ''; }catch(e){}
+if(lang!=='zh' && lang!=='en') lang = /^zh/i.test(navigator.language||'') ? 'zh' : 'en';
+const t = k => UI[lang][k];
+const fromQuery = new URLSearchParams(location.search).get('model');
+const state = { model: MODELS.some(m=>m.id===fromQuery && !m.locked) ? fromQuery : 'opus', picked:new Set() };
+const mlabel = id => MODELS.find(m=>m.id===id).label;
+
+function allowed(c){ return !(c.only && c.only!==state.model) && !(c.exempt && c.exempt===state.model); }
+
+function render(){
+  $('models').innerHTML = MODELS.map(m=>`<label class="chip${m.locked?' locked':''}"><input type="radio" name="model" value="${m.id}" ${state.model===m.id?'checked':''}><span class="hand sk">${m.label}</span></label>`).join('');
+  $('courses').innerHTML = COURSES.map(c=>{
+    const L=c[lang], ok=allowed(c);
+    const badge = c.only ? t('only')(mlabel(c.only)) : c.exempt ? t('exempt')(mlabel(c.exempt)) : '';
+    const why = ok ? '' : c.only ? t('whyOnly')(mlabel(c.only)) : t('whyExempt')(mlabel(c.exempt));
+    return `<label class="course sk"><input type="checkbox" value="${c.id}" ${state.picked.has(c.id)?'checked':''} ${ok?'':'disabled'}>
+      <span class="badge">${badge}</span>
+      <h3>${L.name}</h3><p>${L.desc}</p><span class="meta">⏱ ${L.len}</span>${why?`<span class="why">${why}</span>`:''}
+      <span class="row"><span><s>USD ${c.was}</s> <b>USD ${c.price}</b></span><span class="tick" aria-hidden="true">✓</span></span></label>`;
+  }).join('');
+  $('reviews').innerHTML = REVIEWS[lang].map(r=>`<figure class="review sk"><div class="stars" aria-label="5/5">★★★★★</div><blockquote></blockquote><figcaption></figcaption></figure>`).join('');
+  [...$('reviews').children].forEach((el,i)=>{ el.querySelector('blockquote').textContent = REVIEWS[lang][i].q; el.querySelector('figcaption').textContent = '— ' + REVIEWS[lang][i].who; });
+  $('faq').innerHTML = '';
+  for(const [q,a] of FAQ[lang]){ const dt=document.createElement('dt'), dd=document.createElement('dd'); dt.textContent=q; dd.textContent=a; $('faq').append(dt,dd); }
+  update();
+}
+function update(){
+  const list = COURSES.filter(c=>state.picked.has(c.id));
+  const sum = list.reduce((s,c)=>s+c.price,0);
+  $('total').textContent = 'USD ' + sum;
+  $('summary').textContent = list.length ? `${t('count')(list.length)}・${t('monthly')((sum/24).toFixed(2))}` : t('none');
+}
+function applyLang(){
+  document.documentElement.lang = lang==='en' ? 'en' : 'zh-Hant';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const v = t(el.dataset.i18n);
+    if(el.dataset.i18n==='title') el.innerHTML = v; else el.textContent = v;
+  });
+  $('certImg').alt = t('certAlt'); $('clawdImg').alt = t('capAlt');
+  $('langBtn').textContent = lang==='en' ? '中文' : 'EN';
+  $('langBtn').setAttribute('aria-label', lang==='en' ? '切換成中文' : 'Switch to English');
+  $('err').textContent = '';
+  render();
+  if($('modal').classList.contains('open') && lastCert) showCert();
+}
+
+let tt;
+function toast(msg){ const el=$('toast'); el.textContent=msg; el.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove('show'),2600); }
+
+$('models').addEventListener('change', e=>{
+  const m = MODELS.find(x=>x.id===e.target.value);
+  if(m.locked){ toast(t('fableLock')); render(); return; }
+  state.model = m.id;
+  for(const id of [...state.picked]) if(!allowed(COURSES.find(c=>c.id===id))) state.picked.delete(id);
+  render();
+});
+$('courses').addEventListener('change', e=>{
+  const id = e.target.value; e.target.checked ? state.picked.add(id) : state.picked.delete(id);
+  $('err').textContent = ''; update();
+});
+
+/* 限時優惠：每次重新整理都從 09:59 開始 */
+let left = 599;
+setInterval(()=>{
+  left--;
+  if(left < 0){ left = 599; toast(t('extended')); }
+  $('clock').textContent = `${String(Math.floor(left/60)).padStart(2,'0')}:${String(left%60).padStart(2,'0')}`;
+}, 1000);
+
+/* ---------- certificate ---------- */
+function wobblyLine(x, x1, y1, x2, y2, w=3){
+  x.lineWidth = w; x.lineCap='round'; x.beginPath();
+  const steps = Math.max(2, Math.floor(Math.hypot(x2-x1,y2-y1)/40));
+  x.moveTo(x1, y1);
+  for(let i=1;i<=steps;i++){ const k=i/steps; x.lineTo(x1+(x2-x1)*k + (Math.random()-.5)*2.2, y1+(y2-y1)*k + (Math.random()-.5)*2.2); }
+  x.stroke();
+}
+function wobblyRect(x, a, b, w, h, lw){ wobblyLine(x,a,b,a+w,b,lw); wobblyLine(x,a+w,b,a+w,b+h,lw); wobblyLine(x,a+w,b+h,a,b+h,lw); wobblyLine(x,a,b+h,a,b,lw); }
+function drawCap(x, cx, top, w){
+  const s=w/200; x.save(); x.translate(cx-w/2, top); x.scale(s,s); x.rotate(-.14);
+  x.fillStyle='#1b1b1b';
+  x.beginPath(); x.moveTo(60,52); x.lineTo(60,82); x.quadraticCurveTo(100,98,140,82); x.lineTo(140,52); x.closePath(); x.fill();
+  x.beginPath(); x.moveTo(100,14); x.lineTo(192,44); x.lineTo(100,74); x.lineTo(8,44); x.closePath(); x.fill();
+  x.strokeStyle='#ffd21f'; x.lineWidth=5; x.lineCap='round'; x.beginPath(); x.moveTo(100,44); x.lineTo(166,56); x.lineTo(166,88); x.stroke();
+  x.fillStyle='#ffd21f'; x.beginPath(); x.moveTo(160,86); x.lineTo(172,86); x.lineTo(170,104); x.lineTo(162,104); x.closePath(); x.fill();
+  x.restore();
+}
+
+let lastCert = null, blob = null;
+async function drawCert(cert){
+  try{ await document.fonts.ready }catch(e){}
+  const im = $('clawdImg'); if(!im.complete) await new Promise(r=>im.onload=r);
+  const C = t('cert'), f = '"Noto Sans TC","PingFang TC",sans-serif';
+  const W=1400, rowH=54, H=836 + cert.courses.length*rowH;
+  const c=document.createElement('canvas'); c.width=W; c.height=H; const x=c.getContext('2d');
+  x.fillStyle='#fffdf7'; x.fillRect(0,0,W,H);
+  x.strokeStyle='#1b1b1b'; wobblyRect(x,28,28,W-56,H-56,5); wobblyRect(x,48,48,W-96,H-96,2);
+
+  const iw=170, ih=im.naturalHeight*iw/im.naturalWidth, ix=W-110-iw, iy=120;
+  x.drawImage(im, ix, iy, iw, ih); drawCap(x, ix+iw/2+4, iy-50, iw*.78);
+
+  x.textAlign='center';
+  x.fillStyle='#d9765a'; x.font=`900 46px ${f}`; x.fillText('CLAWD ACADEMY',W/2,140);
+  x.fillStyle='#1b1b1b'; x.font=`900 ${lang==='en'?50:64}px ${f}`; x.fillText(C.head,W/2,225);
+  x.fillStyle='#555'; x.font=`30px ${f}`; x.fillText(C.certify,W/2,288);
+  x.fillStyle='rgba(255,210,31,.7)'; x.save(); x.translate(W/2,392); x.rotate(-.01); x.fillRect(-260,-10,520,26); x.restore();
+  x.fillStyle='#1b1b1b'; x.font=`900 76px ${f}`;
+  let nm=cert.name; while(x.measureText(nm).width>800 && nm.length>2) nm=nm.slice(0,-2)+'…';
+  x.fillText(nm,W/2,392);
+  x.fillStyle='#555'; x.font=`500 28px ${f}`; x.fillText(`(${cert.ver})`,W/2,440);
+  x.font=`30px ${f}`; x.fillText(C.took,W/2,504);
+
+  let y=576; x.textAlign='left';
+  for(const row of cert.courses){
+    const co = COURSES.find(k=>k.id===row.id)[lang];
+    x.fillStyle='#1b1b1b'; x.font=`500 30px ${f}`; x.fillText(co.name,200,y);
+    x.textAlign='right'; x.font=`700 30px ${f}`; x.fillStyle = /^(A|你說得|You're|我不知道|I don't)/.test(co.grades[row.g]) ? '#1e6fe8' : '#1b1b1b';
+    x.fillText(co.grades[row.g],W-200,y); x.textAlign='left';
+    x.strokeStyle='#d0d0d0'; x.setLineDash([4,8]); x.lineWidth=2; x.beginPath(); x.moveTo(200,y+16); x.lineTo(W-200,y+16); x.stroke(); x.setLineDash([]);
+    y+=rowH;
+  }
+
+  const by=H-110, d=new Date(cert.at), p=n=>String(n).padStart(2,'0');
+  x.strokeStyle='#1b1b1b'; wobblyLine(x,150,by-36,520,by-36,2.5); wobblyLine(x,W-520,by-36,W-150,by-36,2.5);
+  x.fillStyle='#555'; x.font=`26px ${f}`; x.textAlign='center';
+  x.fillText(`${C.date} ${d.getFullYear()}/${p(d.getMonth()+1)}/${p(d.getDate())}`,335,by);
+  x.fillText(`${C.dean}  Haiku 4.5`,W-335,by);
+  // signature scribble
+  x.strokeStyle='#1e3a8a'; x.lineWidth=3; x.lineCap='round'; x.beginPath(); x.moveTo(W-470,by-50);
+  for(let i=0;i<9;i++){ x.bezierCurveTo(W-450+i*32,by-110, W-440+i*32,by-30, W-425+i*32,by-62); }
+  x.stroke();
+  // seal
+  x.save(); x.translate(W/2, by-40); x.rotate(-.18);
+  x.strokeStyle='#e8261f'; x.lineWidth=5; x.beginPath(); x.arc(0,0,64,0,Math.PI*2); x.stroke();
+  x.lineWidth=2; x.beginPath(); x.arc(0,0,54,0,Math.PI*2); x.stroke();
+  x.fillStyle='#e8261f'; x.font=`900 ${lang==='en'?30:40}px ${f}`; x.fillText(C.seal,0,14); x.restore();
+
+  x.fillStyle='#8a8a8a'; x.font=`22px ${f}`; x.fillText(C.fine,W/2,H-62);
+  return c;
+}
+async function showCert(){
+  const c = await drawCert(lastCert);
+  $('certImg').src = c.toDataURL('image/png');
+  blob = await new Promise(r=>c.toBlob(r,'image/png'));
+  $('mSub').textContent = t('mSub')(lastCert.name, lastCert.courses.length);
+  $('shareBtn').hidden = !(navigator.canShare && navigator.canShare({ files:[new File([blob], fname(), { type:'image/png' })] }));
+  if(!$('modal').classList.contains('open')){ $('modal').classList.add('open'); $('dlBtn').focus(); }
+}
+const fname = () => `clawd-academy-${lastCert.at}.png`;
+
+$('enroll').onclick = ()=>{
+  const ids = COURSES.filter(c=>state.picked.has(c.id)).map(c=>c.id);
+  if(!ids.length){ $('err').textContent = t('errNone'); $('courses').scrollIntoView({behavior:'smooth', block:'start'}); return; }
+  const m = MODELS.find(x=>x.id===state.model);
+  lastCert = { name: $('cname').value.trim() || 'Clawd', ver: m.ver, at: Date.now(),
+               courses: ids.map(id=>({ id, g: Math.floor(Math.random()*3) })) };
+  showCert();
+};
+$('dlBtn').onclick = ()=>{
+  if(!blob) return;
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fname();
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  toast(t('saved'));
+};
+$('shareBtn').onclick = async ()=>{
+  try{ await navigator.share({ files:[new File([blob], fname(), { type:'image/png' })], title:'CLAWD ACADEMY', url:location.href.split('?')[0] }); }catch(e){}
+};
+$('closeBtn').onclick = ()=>$('modal').classList.remove('open');
+$('modal').addEventListener('click', e=>{ if(e.target.id==='modal') $('closeBtn').click(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && $('modal').classList.contains('open')) $('closeBtn').click(); });
+$('langBtn').onclick = ()=>{ lang = lang==='en' ? 'zh' : 'en'; try{ localStorage.setItem('clawd-lang', lang); }catch(e){} applyLang(); };
+
+applyLang();
+</script>
+</body>
+</html>

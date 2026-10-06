@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CLAWD STORE</title>
+<meta name="description" content="CLAWD STORE：方方的、軟軟的，摸摸頭會跑比較快。挑型號、殼色、思考容量，下單拿收據。非官方 fan art。">
+<meta property="og:title" content="CLAWD STORE">
+<meta property="og:description" content="方方的、軟軟的，摸摸頭會跑比較快。非官方 fan art。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ar36planet.github.io/clawd-store/clawd.html">
+<meta property="og:image" content="https://ar36planet.github.io/clawd-store/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#d9765a">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦀</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#ffffff; --ink:#1b1b1b; --sub:#8a8a8a; --soft:#c9c9c9;
+  --clawd:#d9765a; --new:#e8261f; --pick:#1e6fe8; --pick-fill:#aac2ec;
+  --buy:#ffd21f; --buy-ink:#1b1b1b; --hi:rgba(255,210,31,.55);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#1c1b1a; --ink:#f1efe9; --sub:#9b9892; --soft:#4a4844;
+    --pick-fill:#2c4a7a; --pick:#6aa2ff; --hi:rgba(255,210,31,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#1c1b1a; --ink:#f1efe9; --sub:#9b9892; --soft:#4a4844;
+  --pick-fill:#2c4a7a; --pick:#6aa2ff; --hi:rgba(255,210,31,.3);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  font-size:17px;line-height:1.55;
+}
+.hand{font-weight:700}
+img{max-width:100%}
+button,input,label{font:inherit;color:inherit}
+:focus-visible{outline:3px dashed var(--pick);outline-offset:3px}
+
+/* sketchy border helper */
+.sk{position:relative}
+.sk::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  border:2.5px solid var(--line-c,var(--ink));border-radius:3px;filter:url(#wobble);
+}
+
+/* announcement bar */
+.announce{display:block;background:#1b1b1b;color:#fff;text-align:center;text-decoration:none;font-size:14px;font-weight:700;letter-spacing:.03em;padding:8px 16px;line-height:1.4}
+.announce:hover span{text-decoration:underline;text-underline-offset:3px}
+.announce b{background:var(--new);color:#fff;font-weight:900;padding:1px 7px;margin-right:8px;font-size:12px;vertical-align:1px}
+:root[data-theme="dark"] .announce{background:#f1efe9;color:#1b1b1b}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .announce{background:#f1efe9;color:#1b1b1b} }
+
+/* header */
+.top{max-width:1100px;margin:0 auto;padding:18px 20px 0;display:flex;justify-content:space-between;align-items:center}
+.logo{white-space:nowrap;font-size:clamp(28px,8vw,60px);color:var(--clawd);line-height:1;margin:0;font-weight:900;letter-spacing:.04em}
+.tools{display:flex;align-items:center;gap:6px}
+.lang{border:2px solid var(--soft);background:transparent;border-radius:999px;padding:2px 12px;font-size:15px;cursor:pointer;white-space:nowrap}
+.lang:hover{border-color:var(--sub)}
+.cart{font-size:22px;padding:6px 0 6px 14px;white-space:nowrap}
+.cart b{display:inline-block;min-width:26px;text-align:center;background:var(--new);color:#fff;border-radius:50%;font-size:16px;line-height:26px;margin-left:4px}
+
+/* product */
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px 120px}
+.product{display:grid;gap:12px;align-items:center;padding:20px 0 30px}
+@media (min-width:820px){ .product{grid-template-columns:1.15fr 1fr;gap:40px;padding:40px 0 50px} }
+.stage{display:grid;place-items:center;min-height:300px}
+.figure{width:min(86%,440px);transition:transform .45s cubic-bezier(.3,1.5,.5,1),filter .35s}
+.figure img{display:block;width:100%;height:auto}
+.figure.bounce{animation:hop .5s}
+button.figure{display:block;border:0;background:none;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+@keyframes hop{30%{translate:0 -14px}60%{translate:0 0}}
+
+.title{font-size:52px;margin:0;line-height:1;font-weight:900;letter-spacing:.04em}
+.underline{height:10px;margin:2px 0 16px;max-width:380px}
+.line1{display:flex;align-items:center;gap:14px;font-size:26px;margin-bottom:6px}
+.tag-new{background:var(--new);color:#fff;font-size:17px;font-weight:900;padding:0 10px;line-height:30px;transform:rotate(-2deg);letter-spacing:.06em}
+.tag-new[hidden]{display:none}
+.price{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+.price .usd{font-size:42px;line-height:1;font-weight:900}
+.price .ship{color:var(--sub);font-size:20px;font-weight:500}
+.price .mo{width:100%;color:var(--sub);font-size:15px;margin-top:-6px;font-weight:400}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:12px;margin:0 0 6px}
+.chip{position:relative;cursor:pointer}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{
+  display:inline-block;padding:6px 16px;font-size:18px;line-height:1.3;--line-c:var(--soft);
+  background:var(--paper);transition:background .15s;
+}
+.chip span::before{border-width:3px}
+.chip:hover span{--line-c:var(--sub)}
+.chip input:checked + span{background:var(--pick-fill);--line-c:var(--pick)}
+.chip input:focus-visible + span{outline:3px dashed var(--pick);outline-offset:3px}
+.chip.locked span{color:var(--sub);cursor:not-allowed}
+.chip small{font-size:15px;color:var(--sub);margin-left:4px}
+.chip input:checked + span small{color:inherit}
+.note{color:var(--sub);font-size:15px;min-height:1.5em;margin:6px 0 14px}
+.note a{color:var(--pick);font-weight:700;text-underline-offset:3px}
+
+.buy{
+  display:inline-flex;align-items:center;gap:10px;border:0;cursor:pointer;
+  background:var(--buy);color:var(--buy-ink);font-size:28px;font-weight:900;padding:12px 40px;margin-top:20px;letter-spacing:.04em;
+  transform:rotate(-.6deg);transition:transform .12s;
+}
+.buy:hover{transform:rotate(-.6deg) scale(1.03)}
+.buy:active{transform:rotate(-.6deg) scale(.97)}
+
+/* speech bubble */
+.stage{position:relative;display:flex!important;flex-direction:column;align-items:center;gap:18px}
+.bubble{
+  position:relative;align-self:flex-end;margin-right:6%;max-width:min(80%,300px);z-index:2;
+  background:var(--paper);padding:10px 14px;font-size:16px;font-weight:500;line-height:1.45;
+  transition:opacity .2s;
+}
+.bubble::after{
+  content:"";position:absolute;left:22px;bottom:-12px;width:16px;height:16px;background:var(--paper);
+  border-right:2.5px solid var(--ink);border-bottom:2.5px solid var(--ink);transform:rotate(45deg) skew(8deg,8deg);
+}
+.bubble.peek{opacity:.0}
+/* more specs */
+.more{max-width:760px}
+.more h2{font-size:28px;margin:0 0 4px;font-weight:900}
+.more > p{color:var(--sub);margin:0 0 10px}
+.group{padding:22px 0 18px;border-top:2px dashed var(--soft)}
+.group h3{font-size:22px;margin:0 0 10px;font-weight:700}
+.field input{width:100%;max-width:360px;font-size:20px;padding:8px 14px;border:0;background:transparent}
+.field{display:inline-block}
+
+/* accessory cards */
+.shop{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (min-width:640px){ .shop{grid-template-columns:repeat(3,minmax(0,1fr))} }
+.acc{padding:12px;display:flex;flex-direction:column;--line-c:var(--soft)}
+.acc.in{--line-c:var(--pick)}
+.acc-img{background:color-mix(in srgb,var(--soft) 22%,transparent);aspect-ratio:6/5;display:grid;place-items:center;margin-bottom:10px;color:#1b1b1b}
+.acc-img svg{width:86%;height:auto;overflow:visible}
+.acc h4{margin:0;font-size:16px;line-height:1.35}
+.acc p{margin:4px 0 10px;font-size:13px;color:var(--sub);flex:1}
+.acc-foot{display:flex;justify-content:space-between;align-items:center;gap:6px;flex-wrap:wrap}
+.acc-foot b{font-size:17px}
+.qty{display:flex;align-items:center;border:2px solid var(--soft);border-radius:999px}
+.qty button{width:32px;height:32px;border:0;background:none;font-size:20px;line-height:1;cursor:pointer;border-radius:50%}
+.qty button:hover{background:color-mix(in srgb,var(--soft) 40%,transparent)}
+.qty output{min-width:22px;text-align:center;font-weight:700}
+/* sticky bar */
+.bar{
+  position:fixed;left:0;right:0;bottom:0;z-index:10;background:var(--paper);
+  border-top:2.5px solid var(--ink);
+  padding:10px 20px calc(10px + env(safe-area-inset-bottom,0px));
+  transform:translateY(110%);transition:transform .25s;
+}
+.bar.show{transform:none}
+.bar-in{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.bar .t{font-size:24px;line-height:1.1;font-weight:900}
+.bar .s{color:var(--sub);font-size:14px}
+.bar .buy{font-size:20px;padding:9px 22px;margin:0}
+
+/* toast */
+.toast{
+  position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);
+  background:var(--ink);color:var(--paper);padding:10px 18px;font-size:16px;opacity:0;pointer-events:none;
+  transition:.25s;z-index:30;max-width:90vw;text-align:center;border-radius:4px;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.45);display:none;align-items:flex-end;justify-content:center}
+.modal.open{display:flex}
+@media (min-width:700px){ .modal{align-items:center} }
+.sheet{
+  background:var(--paper);width:100%;max-width:520px;max-height:92%;overflow:auto;
+  padding:22px 20px calc(20px + env(safe-area-inset-bottom,0px));
+}
+.sheet h3{font-size:28px;margin:0;font-weight:900}
+.sheet p{color:var(--sub);margin:0 0 14px}
+.sheet img{width:100%;display:block;border:1px solid var(--soft);background:#fff}
+.sheet .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+.sheet .row .buy{font-size:20px;padding:10px 22px}
+.ghost{background:transparent;color:var(--ink);--line-c:var(--ink)}
+.small{font-size:14px;color:var(--sub);margin-top:10px}
+.promo{display:flex;flex-direction:column;gap:2px;padding:14px 16px;text-decoration:none;color:inherit;max-width:520px;--line-c:var(--soft)}
+.promo:hover{--line-c:var(--pick)}
+.promo b{color:var(--clawd);letter-spacing:.06em}
+.foot{max-width:1100px;margin:0 auto;padding:0 20px 110px;color:var(--sub);font-size:13px}
+
+@media (prefers-reduced-motion:reduce){ *{transition:none!important;animation:none!important} }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="wobble"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7"/><feDisplacementMap in="SourceGraphic" scale="3.5"/></filter>
+</svg>
+
+<a class="announce" id="announce" href="fable.html"><b data-i18n="annTag">NEW</b><span id="annText">Fable 限量預約登記中，先領號碼牌 →</span></a>
+<header class="top">
+  <a class="logo hand" href="./" style="text-decoration:none">CLAWD STORE</a>
+  <div class="tools"><button type="button" class="lang hand" id="langBtn">EN</button><span class="cart hand" id="cart" aria-label="購物車">🛒<b id="cartN">0</b></span></div>
+</header>
+
+<main class="wrap">
+  <section class="product">
+    <div class="stage"><div class="bubble sk" id="bubble" aria-live="polite"></div><button type="button" class="figure" id="figure" aria-label="摸摸頭"><img src="clawd.webp" width="560" height="462" alt="Clawd" id="clawdImg"></button></div>
+    <div>
+      <h1 class="title hand">CLAWD</h1>
+      <svg class="underline" viewBox="0 0 380 10" preserveAspectRatio="none" aria-hidden="true"><path d="M2 6 Q 100 3 200 5 T 378 3" stroke="var(--sub)" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+      <div class="line1 hand"><span class="tag-new" id="newTag">NEW</span><span id="modelName">Opus 5.5</span></div>
+      <div class="price hand">
+        <span class="usd" id="usd">USD 17</span><span class="ship">FREE Shipping</span>
+        <span class="mo" id="mo"></span>
+      </div>
+      <div id="topGroups"></div>
+      <button class="buy hand sk" data-buy>BUY NOW</button>
+    </div>
+  </section>
+
+  <section class="more">
+    <h2 class="hand">More options</h2>
+    <p data-i18n="more">越往下滑，越有可能手滑。</p>
+    <div id="moreGroups"></div>
+    <div class="group">
+      <h3 data-i18n="acc">加購配件</h3>
+      <div class="shop" id="shop"></div>
+    </div>
+    <div class="group">
+      <h3 data-i18n="school">進修方案</h3>
+      <a class="promo sk" id="promo" href="academy.html"><b>CLAWD ACADEMY</b><span data-i18n="schoolText">買了之後，記得送牠去上課。原價 USD 2,999，現在 USD 7 起 →</span></a>
+    </div>
+    <div class="group">
+      <h3 data-i18n="buyer">收件人</h3>
+      <label class="field sk"><input id="buyer" maxlength="20" placeholder="名字或暱稱，會印在收據上"></label>
+    </div>
+  </section>
+</main>
+<footer class="foot" data-i18n="foot">非官方 fan art 惡搞作品，與 Anthropic 無關；頁面上沒有任何真實交易。</footer>
+
+<div class="bar" id="bar">
+  <div class="bar-in">
+    <div><div class="t hand" id="barT">USD 17</div><div class="s" id="barS"></div></div>
+    <button class="buy hand sk" data-buy>BUY NOW</button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+  <div class="sheet">
+    <h3 class="hand" id="mTitle">Order placed!</h3>
+    <p id="mSub"></p>
+    <img id="invImg" alt="Clawd 購買收據">
+    <div class="row">
+      <button class="buy hand sk" id="dlBtn" data-i18n="dl">下載收據</button>
+      <button class="buy hand sk ghost" id="closeBtn" data-i18n="again">再買一隻</button>
+    </div>
+    <div class="small" data-i18n="hold">也可以長按收據圖片儲存。</div>
+  </div>
+</div>
+
+<script>
+const TOP = [
+  { id:'model', en:{title:'Model'}, title:'型號', options:[
+    { id:'haiku',  en:{"desc": "Lightest and fastest. Speaks only in 5-7-5.", "quote": "Bug has been fixed now / every test is passing green / I am heading home"}, label:'Haiku',  ver:'Haiku 4.5',  price:9,  scale:.72, desc:'最輕最快。只用五七五說話。', quote:'Bug 都修好了／測試全部都綠燈／我先下班了' },
+    { id:'sonnet', en:{"desc": "The standard model. Most people only need this one.", "quote": "You're absolutely right!"}, label:'Sonnet', ver:'Sonnet 5.5', price:13, scale:.88, isNew:true, desc:'標準款，大多數人買這隻就夠了。', quote:'你說得完全正確！' },
+    { id:'opus',   en:{"desc": "Comes with an extra deep-thinking core. Will stare at your code for a long time.", "quote": "Let me ultrathink about this…"}, label:'Opus',   ver:'Opus 5.5',   price:17, scale:1, isNew:true, desc:'多一顆深度思考核心。盯著程式碼會發呆很久。', quote:'讓我先 ultrathink 一下⋯⋯' },
+    { id:'fable',  en:{"quote": "I know the answer, but I can't tell you."}, label:'Fable 🔒', locked:true, quote:'這題我會，但我不能說。' },
+  ]},
+  { id:'ed', en:{title:'Edition'}, title:'版本', options:[
+    { id:'std', en:{"label": "Standard", "desc": "Just the right size."}, label:'標準', price:0, k:1, desc:'剛剛好的一隻。' },
+    { id:'pro', en:{"desc": "Bigger eyes, for spotting bugs better."}, label:'PRO', price:5, k:1.06, desc:'眼睛更大顆，看 bug 更清楚。' },
+    { id:'max', en:{"desc": "Extra large. Takes up half your desk."}, label:'MAX', price:12, k:1.16, desc:'體型加大，會佔掉半張桌子。' },
+  ]},
+];
+const MORE = [
+  { id:'shell', en:{title:'Shell color'}, title:'殼色', options:[
+    { id:'orange', en:{"label": "Terracotta", "desc": "Factory color."}, label:'陶土橘', price:0, filter:'none', desc:'原廠配色。' },
+    { id:'black',  en:{"label": "Midnight Black", "desc": "For debugging at 3 a.m."}, label:'深夜黑', price:0, filter:'grayscale(1) brightness(.42) contrast(1.2)', desc:'凌晨三點 debug 專用。' },
+    { id:'green',  en:{"label": "Terminal Green", "desc": "Looks really good at shell scripting."}, label:'Terminal 綠', price:2, filter:'hue-rotate(100deg) saturate(1.1)', desc:'看起來很會寫 shell script。' },
+    { id:'red',    en:{"label": "Prod-Is-Down Red", "desc": "Limited edition. If you see it, roll back immediately."}, label:'Production 炸掉紅', price:5, filter:'hue-rotate(-16deg) saturate(2) brightness(.95)', desc:'限定款。看到它請立刻 rollback。' },
+  ]},
+  { id:'think', en:{title:'Thinking capacity'}, title:'思考容量', options:[
+    { id:'normal',  en:{"label": "Normal thinking", "desc": "Answers fast, occasionally thinks too little."}, label:'一般思考', price:0, desc:'回得快，偶爾想太少。' },
+    { id:'ext',     en:{"label": "Extended thinking", "desc": "Mutters to itself for a round before answering."}, label:'延伸思考', price:6, desc:'會先在心裡碎念一輪再回答。' },
+    { id:'forever', en:{"label": "Think forever", "desc": "Response time: depends on its mood."}, label:'想到天荒地老', price:29, desc:'回覆時間：看心情。' },
+  ]},
+  { id:'ctx', en:{title:'Context window'}, title:'Context window', options:[
+    { id:'now',   en:{"label": "Remembers just now", "desc": "Goldfish tier. Great for arguments."}, label:'記得剛剛', price:0, desc:'金魚等級，很適合吵架。' },
+    { id:'week',  en:{"label": "Remembers last week", "desc": "Including when you said you'd write tests this week."}, label:'記得上週', price:3, desc:'包含你說「這週一定會寫測試」。' },
+    { id:'month', en:{"label": "Remembers 3 months back", "desc": "Including every \"temporary\" hack."}, label:'記得三個月前', price:9, desc:'包含所有「暫時先這樣寫」的地方。' },
+  ]},
+  { id:'care', en:{title:'ClawdCare+'}, title:'ClawdCare+', options:[
+    { id:'no',  en:{"label": "No thanks", "desc": "I trust the requirements won't change."}, label:'不加購', price:0, desc:'我相信需求不會變。' },
+    { id:'yes', en:{"label": "Add ClawdCare+", "desc": "Covers drops, swallowed bugs, and being crushed by scope changes."}, label:'加購 ClawdCare+', price:4, desc:'意外摔落、吃到 bug、被需求變更壓扁，皆可保固。' },
+  ]},
+  { id:'trade', en:{title:'Trade-in'}, title:'舊殼折抵', options:[
+    { id:'no',  en:{"label": "No old shell", "desc": "This is my first Clawd."}, label:'沒有舊殼', price:0, desc:'這是我的第一隻 Clawd。' },
+    { id:'yes', en:{"label": "I have an old shell", "desc": "The shell the last generation molted. Must be intact."}, label:'我有舊殼', price:-3, desc:'上一代蛻下來的殼，殼要完整喔。' },
+  ]},
+];
+const ACC = [
+  { id:'box', en:{"name": "Cardboard Box Bed", "desc": "It's just the box it came in, but it loves it."}, name:'Clawd 專用紙箱床', desc:'其實就是原本那個紙箱，但牠很喜歡。', price:1, svg:`<path d="M22 48 L60 40 L98 48 L98 86 L60 94 L22 86 Z" fill="#c9965c" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M60 40 L60 94" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M22 48 L10 34 L48 28 L60 40 M98 48 L110 34 L72 28 L60 40" fill="#dcae78" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="60" cy="50" rx="22" ry="6" fill="#f3e3cf" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>` },
+  { id:'pad', en:{"name": "Charging Heat Pad", "desc": "Works just as well next to your laptop's vent."}, name:'充電用暖暖墊', desc:'放在筆電散熱孔旁邊效果一樣。', price:3, svg:`<rect x="16" y="52" width="72" height="30" rx="12" fill="#f0a77f" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M30 44 q6 -8 0 -16 q-6 -8 0 -16 M52 44 q6 -8 0 -16 q-6 -8 0 -16 M74 44 q6 -8 0 -16 q-6 -8 0 -16" fill="none" stroke="#e8261f" stroke-width="3" stroke-linecap="round"/><path d="M88 68 q16 0 16 14 q0 10 10 10" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><rect x="106" y="86" width="10" height="8" fill="#ddd" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>` },
+  { id:'sticker', en:{"name": "\"No rm -rf\" Sticker", "desc": "Stick it on your terminal. Effectiveness unproven."}, name:'「禁止 rm -rf」貼紙', desc:'貼在 terminal 上。效果未經證實。', price:1, svg:`<circle cx="60" cy="54" r="38" fill="#fff" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="60" cy="54" r="30" fill="none" stroke="#e8261f" stroke-width="7"/><line x1="39" y1="33" x2="81" y2="75" stroke="#e8261f" stroke-width="7"/><text x="60" y="60" text-anchor="middle" font-family="monospace" font-weight="700" font-size="16" fill="currentColor" stroke="#fff" stroke-width="5" paint-order="stroke">rm -rf</text><path d="M86 78 q-6 -2 -10 8 q10 2 10 -8z" fill="#ddd" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>` },
+  { id:'keys', en:{"name": "Keyboard Claw Covers", "desc": "Double the clicky-switch noise, one key at a time."}, name:'機械鍵盤專用爪套', desc:'青軸聲音加倍，一次只按一個鍵。', price:2, svg:`<path d="M18 70 q-4 -30 18 -34 q22 -4 22 24 l0 16 z" fill="#8fb6e8" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M62 70 q-4 -30 18 -34 q22 -4 22 24 l0 16 z" fill="#8fb6e8" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><rect x="14" y="70" width="48" height="12" rx="3" fill="#5b8fd6" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><rect x="58" y="70" width="48" height="12" rx="3" fill="#5b8fd6" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><rect x="28" y="46" width="12" height="12" rx="2" fill="#fff" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><rect x="72" y="46" width="12" height="12" rx="2" fill="#fff" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>` },
+  { id:'mug', en:{"name": "Coffee Mug Grip", "desc": "No more lattes in the keyboard."}, name:'咖啡杯握把', desc:'不再把拿鐵灑在鍵盤上。', price:1, svg:`<path d="M30 40 L82 40 L78 90 L34 90 Z" fill="#fff" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M82 50 q24 0 22 18 q-2 16 -24 14" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><path d="M31 48 L81 48" stroke="#8a5a3a" stroke-width="6"/><path d="M44 30 q-5 -7 0 -14 M58 30 q-5 -7 0 -14" fill="none" stroke="#aaa" stroke-width="3" stroke-linecap="round"/>` },
+  { id:'muff', en:{"name": "Meeting Earmuffs", "desc": "Auto-mutes whenever someone says \"this should be easy, right?\""}, name:'開會用降噪耳罩', desc:'聽到「這個應該很簡單吧」會自動靜音。', price:4, svg:`<path d="M26 66 q0 -46 34 -46 q34 0 34 46" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/><rect x="14" y="58" width="24" height="34" rx="10" fill="#ffd21f" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><rect x="82" y="58" width="24" height="34" rx="10" fill="#ffd21f" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>` },
+];
+const UI = {
+  zh:{ more:'越往下滑，越有可能手滑。', acc:'加購配件', buyer:'收件人', buyerPh:'名字或暱稱，會印在收據上',
+       foot:'非官方 fan art 惡搞作品，與 Anthropic 無關；頁面上沒有任何真實交易。', cart:'購物車',
+       dl:'下載收據', again:'再買一隻', hold:'也可以長按收據圖片儲存。', invAlt:'Clawd 購買收據',
+       dec:'減少', inc:'增加', school:'進修方案', schoolText:'買了之後，記得送牠去上課。原價 USD 2,999，現在 USD 7 起 →', annTag:'限量', ann:'Fable 限量預約登記中，先領號碼牌 →', annMine:n=>`你的 Fable 候補號碼 No. ${n}，看號碼牌 →`, patLabel:'摸摸頭',
+       pats:['嘿嘿。','（開心地晃了晃腳）','跑速 +3%。','再摸一下，build 就會過。','這邊，這邊也要摸。'], patMax:'好啦好啦，已經是最快了。', qty:n=>`${n} 數量`, sep:'：',
+       mo:v=>`或分 24 期，每月 USD ${v}`, moInv:v=>`分 24 期，每月 USD ${v}`,
+       wait:n=>`Fable 限量供應中，你是候補第 ${n} 位`, waitMine:n=>`你已經在候補名單上了，號碼 No. ${n}`,
+       fableNote:'Fable 目前只開放預約登記。', fableGo:'前往預約登記 →', sub:m=>`你的 Clawd ${m} 已經在紙箱裡了。`,
+       saved:'收據已下載', busy:'下載視窗已經開著了', noDl:'這裡無法下載，請長按收據圖片儲存',
+       inv:{ no:'訂單編號', at:'下單時間', who:'收件人', pay:'付款方式', anon:'匿名工程師', payV:'手滑',
+             ship:'運費（Clawd 自己走過去）', stamp:'已出貨', total:'總計', says:q=>`Clawd 留言：「${q}」`,
+             fine:['本商品出貨後恕不退貨，因為 Clawd 不想回去。','請勿於週五下午與 Clawd 一同部署。','本收據為 fan art 惡搞作品，非真實交易。'] } },
+  en:{ more:'The further you scroll, the more likely you slip and buy.', acc:'Accessories', buyer:'Recipient', buyerPh:'Name or nickname, printed on the receipt',
+       foot:'Unofficial fan-art parody, not affiliated with Anthropic. No real transactions happen here.', cart:'Cart',
+       dl:'Save receipt', again:'Buy another', hold:'You can also long-press the receipt to save it.', invAlt:'Clawd purchase receipt',
+       dec:'Decrease', inc:'Increase', school:'Continuing education', schoolText:'After you buy, send it to class. Was USD 2,999, now from USD 7 →', annTag:'LIMITED', ann:'Fable reservations are open. Grab a waitlist ticket →', annMine:n=>`Your Fable waitlist number: No. ${n}. View ticket →`, patLabel:'Pat Clawd',
+       pats:['Hehe.','(happily wiggles its legs)','Speed +3%.','One more pat and the build will pass.','Here, this side too.'], patMax:'OK OK, this is already max speed.', qty:n=>`${n} quantity`, sep:': ',
+       mo:v=>`or 24 payments of USD ${v}/mo`, moInv:v=>`24 payments of USD ${v}/mo`,
+       wait:n=>`Fable is in limited supply. You're #${n} on the waitlist`, waitMine:n=>`You're already on the waitlist: No. ${n}`,
+       fableNote:'Fable is reservation-only for now.', fableGo:'Reserve one →', sub:m=>`Your Clawd ${m} is already in the box.`,
+       saved:'Receipt saved', busy:'The download dialog is already open', noDl:"Can't download here. Long-press the receipt to save it.",
+       inv:{ no:'Order No.', at:'Date', who:'Recipient', pay:'Payment', anon:'Anonymous Engineer', payV:'Slipped finger',
+             ship:'Shipping (Clawd walks there itself)', stamp:'SHIPPED', total:'Total', says:q=>`Clawd says: "${q}"`,
+             fine:["No returns after shipping. Clawd doesn't want to go back.",'Do not deploy with Clawd on Friday afternoons.','This receipt is a fan-art parody, not a real transaction.'] } },
+};
+let lang = 'zh';
+try{ lang = localStorage.getItem('clawd-lang') || ''; }catch(e){}
+if(lang!=='zh' && lang!=='en') lang = /^zh/i.test(navigator.language||'') ? 'zh' : 'en';
+const t = k => UI[lang][k];
+const tr = (o,k) => (lang==='en' && o.en && o.en[k]!=null) ? o.en[k] : o[k];
+const ALL = [...TOP, ...MORE];
+const state = { model:'opus', ed:'std', shell:'orange', think:'normal', ctx:'now', care:'no', trade:'no', qty:{}, buyer:'' };
+const $ = id => document.getElementById(id);
+let fablePeek = false, fableNote = false;
+function fableTicket(){ try{ return JSON.parse(localStorage.getItem('clawd-fable-ticket')||'null'); }catch(e){ return null; } }
+const opt = (g,o) => ALL.find(x=>x.id===g).options.find(x=>x.id===o);
+const usd = n => (n<0?'−':'') + 'USD ' + Math.abs(n);
+const delta = n => n===0 ? '' : (n>0?'+':'−') + Math.abs(n);
+
+function groupHTML(g, showTitle){
+  let h = `<div class="${showTitle?'group':''}" role="${g.multi?'group':'radiogroup'}" aria-label="${tr(g,'title')}">`;
+  if(showTitle) h += `<h3>${tr(g,'title')}</h3>`;
+  h += '<div class="chips">';
+  for(const o of g.options){
+    const checked = g.multi ? state.addons.has(o.id) : state[g.id]===o.id;
+    const d = (g.id!=='model' && o.price) ? `<small>${delta(o.price)}</small>` : '';
+    h += `<label class="chip${o.locked?' locked':''}"><input type="${g.multi?'checkbox':'radio'}" name="${g.id}" value="${o.id}" ${checked?'checked':''}><span class="hand sk">${tr(o,'label')}${d}</span></label>`;
+  }
+  h += `</div><p class="note" id="note-${g.id}"></p></div>`;
+  return h;
+}
+function render(){
+$('topGroups').innerHTML = TOP.map(g=>groupHTML(g,false)).join('');
+$('moreGroups').innerHTML = MORE.map(g=>groupHTML(g,true)).join('');
+$('shop').innerHTML = ACC.map(a=>`<article class="acc sk${state.qty[a.id]?' in':''}">
+  <div class="acc-img"><svg viewBox="0 0 120 100" role="img" aria-label="${tr(a,'name')}" filter="url(#wobble)">${a.svg}</svg></div>
+  <h4>${tr(a,'name')}</h4><p>${tr(a,'desc')}</p>
+  <div class="acc-foot"><b>USD ${a.price}</b>
+    <div class="qty" role="group" aria-label="${t('qty')(tr(a,'name'))}">
+      <button type="button" data-acc="${a.id}" data-d="-1" aria-label="${t('dec')}">−</button>
+      <output id="q-${a.id}">${state.qty[a.id]||0}</output>
+      <button type="button" data-acc="${a.id}" data-d="1" aria-label="${t('inc')}">+</button>
+    </div></div></article>`).join('');
+}
+function applyLang(){
+  document.documentElement.lang = lang==='en' ? 'en' : 'zh-Hant';
+  document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent = t(el.dataset.i18n));
+  $('buyer').placeholder = t('buyerPh'); $('cart').setAttribute('aria-label', t('cart')); $('invImg').alt = t('invAlt'); $('figure').setAttribute('aria-label', t('patLabel'));
+  const tk = fableTicket(); $('annText').textContent = tk ? t('annMine')(tk.no.toLocaleString('en-US')) : t('ann'); $('announce').href = tk ? 'fable.html#ticket' : 'fable.html';
+  $('langBtn').textContent = lang==='en' ? '中文' : 'EN';
+  $('langBtn').setAttribute('aria-label', lang==='en' ? '切換成中文' : 'Switch to English');
+  render(); update();
+}
+$('shop').addEventListener('click', e=>{
+  const b = e.target.closest('button[data-acc]'); if(!b) return;
+  const id = b.dataset.acc, n = Math.max(0, Math.min(99, (state.qty[id]||0) + +b.dataset.d));
+  state.qty[id] = n; $('q-'+id).textContent = n;
+  b.closest('.acc').classList.toggle('in', n>0);
+  update();
+});
+
+document.addEventListener('change', e=>{
+  const el = e.target; if(!el.name) return;
+  const g = ALL.find(x=>x.id===el.name); if(!g) return;
+  const o = opt(g.id, el.value);
+  if(o.locked){
+    fablePeek = true; $('bubble').textContent = 'Fable' + t('sep') + tr(o,'quote');
+    setTimeout(()=>{ fablePeek=false; update(); }, 2600);
+    document.querySelector(`input[name="${g.id}"][value="${state[g.id]}"]`).checked = true;
+    fableNote = true; update();
+    const tk = fableTicket();
+    toast(tk ? t('waitMine')(tk.no.toLocaleString('en-US')) : t('wait')((48000+Math.floor(Math.random()*999)).toLocaleString('en-US')));
+    return;
+  }
+  state[g.id] = o.id;
+  if(g.id==='model'){ fableNote = false; fablePeek = false; }
+  if(g.id==='model' || g.id==='ed'){ const f=$('figure'); f.classList.remove('bounce'); void f.offsetWidth; f.classList.add('bounce'); }
+  update();
+});
+$('buyer').addEventListener('input', e=>state.buyer = e.target.value);
+
+function items(){
+  const list = [];
+  const m = opt('model',state.model), ed = opt('ed',state.ed);
+  list.push({ label:`Clawd ${m.ver}${state.ed==='std'?'':' '+tr(ed,'label')}`, price:m.price+ed.price });
+  for(const g of MORE){
+    const o = opt(g.id, state[g.id]);
+    if(o.price===0 && g.id!=='shell') continue;
+    list.push({ label:`${tr(g,'title')}${t('sep')}${tr(o,'label')}`, price:o.price });
+  }
+  for(const a of ACC){ const n=state.qty[a.id]||0; if(n) list.push({ label:`${tr(a,'name')} ×${n}`, price:a.price*n }); }
+  return list;
+}
+const sum = l => l.reduce((s,i)=>s+i.price,0);
+
+function update(){
+  const m = opt('model',state.model), ed = opt('ed',state.ed), sh = opt('shell',state.shell);
+  $('modelName').textContent = m.ver + (state.ed==='std' ? '' : ' ' + tr(ed,'label'));
+  $('newTag').hidden = !m.isNew;
+  if(!fablePeek) $('bubble').textContent = tr(m,'quote');
+  const f = $('figure'); f.style.transform = `scale(${m.scale*ed.k})`; f.style.filter = sh.filter;
+  const total = sum(items());
+  const mo = t('mo')((total/24).toFixed(2));
+  $('usd').textContent = usd(total); $('mo').textContent = mo;
+  $('promo').href = 'academy.html?model=' + state.model;
+  $('barT').textContent = usd(total); $('barS').textContent = $('modelName').textContent;
+  for(const g of ALL){
+    const n = $('note-'+g.id); if(!n) continue;
+    if(g.id==='model' && fableNote){ n.textContent = t('fableNote') + ' '; const a=document.createElement('a'); a.href='fable.html'; a.textContent=t('fableGo'); n.append(a); continue; }
+    n.textContent = tr(opt(g.id, state[g.id]),'desc') || '';
+  }
+}
+
+/* sticky bar appears once the main BUY NOW scrolls away */
+const mainBuy = document.querySelector('.product [data-buy]');
+new IntersectionObserver(([e])=>$('bar').classList.toggle('show', !e.isIntersecting && e.boundingClientRect.top < 0)).observe(mainBuy);
+
+let tt;
+function toast(msg){ const el=$('toast'); el.textContent=msg; el.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove('show'),2600); }
+
+/* ---------- invoice ---------- */
+function wobblyLine(x, x1, y1, x2, y2, w=3){
+  x.lineWidth = w; x.lineCap='round'; x.beginPath();
+  const steps = Math.max(2, Math.floor(Math.hypot(x2-x1,y2-y1)/40));
+  x.moveTo(x1, y1);
+  for(let i=1;i<=steps;i++){ const t=i/steps; x.lineTo(x1+(x2-x1)*t + (Math.random()-.5)*2.2, y1+(y2-y1)*t + (Math.random()-.5)*2.2); }
+  x.stroke();
+}
+function wobblyRect(x, a, b, w, h, lw){ wobblyLine(x,a,b,a+w,b,lw); wobblyLine(x,a+w,b,a+w,b+h,lw); wobblyLine(x,a+w,b+h,a,b+h,lw); wobblyLine(x,a,b+h,a,b,lw); }
+
+/* CSS filter → pixel ops, because Safari's canvas has no ctx.filter */
+function tinted(im, w, h, filter){
+  const c=document.createElement('canvas'); c.width=Math.round(w); c.height=Math.round(h);
+  const x=c.getContext('2d'); x.drawImage(im,0,0,c.width,c.height);
+  if(!filter || filter==='none') return c;
+  const ops=[...filter.matchAll(/([a-z-]+)\(([-\d.]+)(deg)?\)/g)].map(m=>[m[1],+m[2]]);
+  const mats=ops.map(([f,v])=>{
+    if(f==='brightness') return [v,0,0,0,v,0,0,0,v,0];
+    if(f==='contrast') return [v,0,0,0,v,0,0,0,v,.5-.5*v];
+    if(f==='grayscale'){ const a=1-v; return [.2126+.7874*a,.7152-.7152*a,.0722-.0722*a,.2126-.2126*a,.7152+.2848*a,.0722-.0722*a,.2126-.2126*a,.7152-.7152*a,.0722+.9278*a,0]; }
+    if(f==='saturate') return [.213+.787*v,.715-.715*v,.072-.072*v,.213-.213*v,.715+.285*v,.072-.072*v,.213-.213*v,.715-.715*v,.072+.928*v,0];
+    if(f==='hue-rotate'){ const r=v*Math.PI/180, C=Math.cos(r), S=Math.sin(r);
+      return [.213+C*.787-S*.213,.715-C*.715-S*.715,.072-C*.072+S*.928,
+              .213-C*.213+S*.143,.715+C*.285+S*.140,.072-C*.072-S*.283,
+              .213-C*.213-S*.787,.715-C*.715+S*.715,.072+C*.928+S*.072,0]; }
+    return null;
+  }).filter(Boolean);
+  const img=x.getImageData(0,0,c.width,c.height), d=img.data, cl=n=>n<0?0:n>1?1:n;
+  for(let i=0;i<d.length;i+=4){
+    if(!d[i+3]) continue;
+    let r=d[i]/255, g=d[i+1]/255, b=d[i+2]/255;
+    for(const m of mats){ const R=cl(m[0]*r+m[1]*g+m[2]*b+m[9]), G=cl(m[3]*r+m[4]*g+m[5]*b+m[9]), B=cl(m[6]*r+m[7]*g+m[8]*b+m[9]); r=R; g=G; b=B; }
+    d[i]=r*255; d[i+1]=g*255; d[i+2]=b*255;
+  }
+  x.putImageData(img,0,0); return c;
+}
+
+function wrapText(x, text, max){
+  const parts = lang==='en' ? text.split(/(?<= )/) : [...text], lines=[];
+  let cur='';
+  for(const p of parts){ if(cur && x.measureText(cur+p).width>max){ lines.push(cur.trimEnd()); cur=p.trimStart(); } else cur+=p; }
+  if(cur) lines.push(cur); return lines;
+}
+
+async function drawInvoice(no){
+  try{ await document.fonts.ready }catch(e){}
+  const I = t('inv');
+  const list = items(); list.push({ label:I.ship, price:0 });
+  const said = I.says(tr(opt('model',state.model),'quote'));
+  const m0 = document.createElement('canvas').getContext('2d'); m0.font = `500 30px "Noto Sans TC","PingFang TC",sans-serif`;
+  const saidLines = wrapText(m0, said, 1080-168);
+  const total = sum(list);
+  const W=1080, rowH=72, H=760 + list.length*rowH + 470 + (saidLines.length-1)*42;
+  const c=document.createElement('canvas'); c.width=W; c.height=H; const x=c.getContext('2d');
+  const hand='"Noto Sans TC","PingFang TC",sans-serif', zh=hand;
+  x.fillStyle='#fff'; x.fillRect(0,0,W,H);
+  x.strokeStyle='#1b1b1b'; wobblyRect(x,30,30,W-60,H-60,4);
+
+  x.fillStyle='#d9765a'; x.font=`900 80px ${hand}`; x.fillText('CLAWD STORE',80,155);
+  x.fillStyle='#1b1b1b'; x.font=`500 34px ${hand}`; x.fillText('RECEIPT',84,210);
+
+  const d=new Date(), p=n=>String(n).padStart(2,'0');
+  x.font=`30px ${zh}`; x.fillStyle='#555';
+  const meta=[[I.no,no],[I.at,`${d.getFullYear()}/${p(d.getMonth()+1)}/${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`],[I.who,state.buyer.trim()||I.anon],[I.pay,I.payV]];
+  meta.forEach(([k,v],i)=>{ x.fillText(k,84,290+i*48); x.fillStyle='#1b1b1b'; x.fillText(v,lang==='en'?250:240,290+i*48); x.fillStyle='#555'; });
+
+  // clawd
+  const im = $('clawdImg');
+  const bw=320, k=bw/im.naturalWidth, bh=im.naturalHeight*k, bx=W-90-bw, by=150;
+  x.drawImage(tinted(im,bw,bh,opt('shell',state.shell).filter),bx,by,bw,bh);
+  // stamp
+  x.save(); x.translate(bx+bw-40, by+bh+10); x.rotate(-.2);
+  x.strokeStyle='#e8261f'; wobblyRect(x,-170,-50,190,74,5);
+  x.fillStyle='#e8261f'; x.font=`700 ${lang==='en'?34:42}px ${zh}`; x.textAlign='center'; x.fillText(I.stamp,-75,2); x.restore();
+
+  let y=540; x.strokeStyle='#1b1b1b'; wobblyLine(x,80,y,W-80,y,3); y+=62;
+  for(const it of list){
+    x.fillStyle='#1b1b1b'; x.font=`32px ${zh}`;
+    let l=it.label; while(x.measureText(l).width>700 && l.length>2) l=l.slice(0,-2)+'…';
+    x.fillText(l,84,y);
+    x.textAlign='right'; x.font=`500 32px ${hand}`; x.fillStyle = it.price<0 ? '#e8261f' : '#1b1b1b';
+    x.fillText(it.price===0 ? 'FREE' : usd(it.price), W-84, y); x.textAlign='left';
+    y+=rowH;
+  }
+  y-=20; x.strokeStyle='#8a8a8a'; x.setLineDash([10,12]); wobblyLine(x,80,y,W-80,y,2.5); x.setLineDash([]);
+  y+=100;
+  // highlighter
+  x.fillStyle='rgba(255,210,31,.75)'; x.save(); x.translate(W-84,y-30); x.rotate(-.02); x.fillRect(-360,-42,380,70); x.restore();
+  x.fillStyle='#1b1b1b'; x.font=`700 40px ${zh}`; x.fillText(I.total,84,y);
+  x.textAlign='right'; x.font=`900 64px ${hand}`; x.fillText(usd(total),W-84,y+4); x.textAlign='left';
+  y+=56; x.fillStyle='#8a8a8a'; x.font=`28px ${zh}`; x.fillText(t('moInv')((total/24).toFixed(2)),84,y);
+
+  y+=60; let bx2=84, r=[...no].reduce((a,ch)=>a+ch.charCodeAt(0),0); x.fillStyle='#1b1b1b';
+  while(bx2<W-84){ r=(r*9301+49297)%233280; const w=2+(r%5); if((r>>3)%2) x.fillRect(bx2,y,w,86); bx2+=w+2; }
+  y+=140; x.fillStyle='#1b1b1b'; x.font=`500 30px ${zh}`; saidLines.forEach((l,i)=>x.fillText(l,84,y+i*42)); y+=(saidLines.length-1)*42;
+  y+=64; x.fillStyle='#8a8a8a'; x.font=`27px ${zh}`;
+  I.fine.forEach((l,i)=>x.fillText(l,84,y+i*42));
+  return c;
+}
+
+let blob=null, fname='', cart=0;
+document.querySelectorAll('[data-buy]').forEach(b=>b.onclick = async ()=>{
+  const no = 'CLAWD-' + Date.now().toString(36).toUpperCase().slice(-6);
+  const c = await drawInvoice(no);
+  $('invImg').src = c.toDataURL('image/png');
+  blob = await new Promise(r=>c.toBlob(r,'image/png')); fname = `clawd-receipt-${no}.png`;
+  $('cartN').textContent = ++cart;
+  $('mSub').textContent = t('sub')($('modelName').textContent);
+  $('modal').classList.add('open'); $('dlBtn').focus();
+});
+$('closeBtn').onclick = ()=>$('modal').classList.remove('open');
+$('modal').addEventListener('click', e=>{ if(e.target.id==='modal') $('closeBtn').click(); });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && $('modal').classList.contains('open')) $('closeBtn').click(); });
+
+let downloads=null;
+(async()=>{ try{ if(window.claude&&window.claude.use) downloads = await window.claude.use('downloads'); }catch(e){} })();
+$('dlBtn').onclick = async ()=>{
+  if(!blob) return;
+  if(!downloads){
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fname;
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+    toast(t('saved')); return;
+  }
+  try{ await downloads.save({filename:fname, data:blob}); toast(t('saved')); }
+  catch(err){ if(err&&err.code==='declined') return; toast(err&&err.code==='rate_limited' ? t('busy') : t('noDl')); }
+};
+
+let pats = 0, patTimer;
+$('figure').onclick = ()=>{
+  const f=$('figure'); f.classList.remove('bounce'); void f.offsetWidth; f.classList.add('bounce');
+  const lines = t('pats'); pats++;
+  fablePeek = true; $('bubble').textContent = pats>=12 ? t('patMax') : lines[(pats-1) % lines.length];
+  clearTimeout(patTimer); patTimer = setTimeout(()=>{ fablePeek=false; update(); }, 2200);
+};
+$('langBtn').onclick = ()=>{
+  lang = lang==='en' ? 'zh' : 'en';
+  try{ localStorage.setItem('clawd-lang', lang); }catch(e){}
+  applyLang();
+};
+applyLang();
+</script>
+</body>
+</html>
